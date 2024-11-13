@@ -5,14 +5,14 @@ layout: home
 hero:
   name: "NCCP docs"
   text: "Vitepress document site"
-  tagline: My great project tagline
+  tagline: ""
   actions:
     - theme: brand
       text: Markdown Examples
-      link: /markdown-examples
+      link: /examples/markdown-examples
     - theme: alt
       text: API Examples
-      link: /api-examples
+      link: /examples/api-examples
 
 features:
   - title: Feature A
