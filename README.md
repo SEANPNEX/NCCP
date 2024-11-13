@@ -1,7 +1,7 @@
 # North Carolina County Project (NCCP)
 
 
-## Todos
+## Data searching
 - [ ] Search for counties affected
 
 ### Population Info
@@ -25,3 +25,8 @@ Goal: Identify business requiring funds
 * - [ ] Land owned
 ### Home info
 - [ ] Home price trend/ statistics (mean, variance)
+
+
+## Presenting
+- [ ] Choose and create db and api interface
+- [ ] Interactive map to show data

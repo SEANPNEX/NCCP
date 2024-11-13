@@ -1,0 +1,30 @@
+name: Log Commit Details
+
+on: [push]
+
+jobs:
+  log_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Log commit information
+        run: |
+          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+          USER="${{ github.actor }}"
+          MESSAGE=$(git log -1 --pretty=%B)
+          echo "${TIMESTAMP}-${USER}-${MESSAGE}" >> workflow.log
+
+      - name: Commit and push log file
+        run: |
+          git add workflow.log
+          git commit -m "Update workflow.log with latest commit details"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
