@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: Database
-      link: /db/db_docs
+      link: /docs/db/db_docs
     - theme: alt
       text: API Examples
-      link: /examples/api-examples
+      link: /docs/examples/api-examples
 
 features:
   - title: Feature A
