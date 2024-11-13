@@ -10,19 +10,19 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: 'examples/markdown-examples' }
+      { text: 'Examples', link: 'docs/examples/markdown-examples' },
+      { text: 'Map', link: "docs/map/map_docs"},
+      { text: 'Database', link: 'docs/db/db_docs'},
     ],
 
-    sidebar: {
-      "/examples": set_sidebar("docpage/examples")
-    },
+  sidebar: set_sidebar("docpage/docs"),
 
   socialLinks: [
-      { icon: 'github', link: 'https://SEANPNEX/NCCP/' }
+      { icon: 'github', link: 'https://https://github.com/SEANPNEX/NCCP/' }
     ]
   },
   footer:{
-    copyright: "Copyright@ 2024 Sean Guo",
+    copyright: "Copyright@ 2024 NCCP",
   },
   
   search: {

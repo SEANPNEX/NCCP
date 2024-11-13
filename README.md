@@ -30,3 +30,5 @@ Goal: Identify business requiring funds
 ## Presenting
 - [ ] Choose and create db and api interface
 - [ ] Interactive map to show data
+
+

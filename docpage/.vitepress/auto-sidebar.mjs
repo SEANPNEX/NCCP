@@ -32,6 +32,7 @@ function getList(params, path1, pathname) {
     if (isDir) {
       // 如果是文件夹,读取之后作为下一次递归参数
       const files = fs.readdirSync(dir);
+      console.log("working on:", files);
       res.push({
         text: params[file],
         collapsible: true,
@@ -71,11 +72,17 @@ export const set_sidebar = (pathname) => {
   const items = intersections(files, WHITE_LIST);
   // getList 函数后面会讲到, strip `docpage/` from `pathname`
   const cleanedPath = pathname.replace(/^docpage\//, "");
+  console.log("items:",items,"\n dirPath:", dirPath, "\n cleanedPath:", cleanedPath, "\n\n");
   let result = getList(items, dirPath, cleanedPath);
-  result.map((item) => {
+  result.map((item) => { 
     item.text = item.text.replace(/^docpage\//, "");
     item.text = item.text.replace(/\.md$/, "");
   });
   // console.log(result);
+  // for(const item in result){
+  //   console.log(item.text);
+  //   console.log(item.items);
+  // }
+  console.log(JSON.stringify(result));
   return result;
 };

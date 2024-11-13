@@ -1,5 +1,11 @@
 ---
 outline: deep
+prev: 
+    text: "Database"
+    link: "docs/db/db_docs.md"
+next:
+    text: "Markdown Example"
+    link: "/docs/examples/markdown-examples.md"
 ---
 
 # Runtime API Examples

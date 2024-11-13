@@ -1,3 +1,13 @@
+---
+prev: 
+  text: "API Examples"
+  link: "/docs/examples/api-examples.md"
+next:
+  text: "Map"
+  link: "docs/map/map_docs.md"
+---
+
+
 # Markdown Extension Examples
 
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
