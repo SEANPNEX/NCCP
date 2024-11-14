@@ -28,7 +28,7 @@ jobs:
           
           # Append to docpage/docs/workflow.md if it exists
           if [ -f "docpage/docs/workflow.md" ]; then
-            echo "$LOG_ENTRY" >> docpage/docs/workflow.md
+            echo "\n$LOG_ENTRY" >> docpage/docs/workflow.md
           fi
 
       - name: Commit and push log files
