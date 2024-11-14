@@ -27,3 +27,5 @@ prev:
 
 2024-11-14 14:51:35-SEANPNEX-update the database document
 
+2024-11-14 15:38:04-SEANPNEX-update the README::Added Dev todos:bookmark:
+
