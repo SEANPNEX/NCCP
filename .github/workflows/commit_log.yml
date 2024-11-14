@@ -21,12 +21,23 @@ jobs:
           TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
           USER="${{ github.actor }}"
           MESSAGE=$(git log -1 --pretty=%B)
-          echo "${TIMESTAMP}-${USER}-${MESSAGE}" >> workflow.log
+          LOG_ENTRY="${TIMESTAMP}-${USER}-${MESSAGE}"
+          
+          # Append to workflow.log
+          echo "$LOG_ENTRY" >> workflow.log
+          
+          # Append to docpage/docs/workflow.md if it exists
+          if [ -f "docpage/docs/workflow.md" ]; then
+            echo "$LOG_ENTRY" >> docpage/docs/workflow.md
+          fi
 
-      - name: Commit and push log file
+      - name: Commit and push log files
         run: |
           git add workflow.log
-          git commit -m "Update workflow.log with latest commit details"
+          if [ -f "docpage/docs/workflow.md" ]; then
+            git add docpage/docs/workflow.md
+          fi
+          git commit -m "Update log files with latest commit details"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
