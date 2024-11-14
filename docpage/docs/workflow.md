@@ -29,3 +29,5 @@ prev:
 
 2024-11-14 15:38:04-SEANPNEX-update the README::Added Dev todos:bookmark:
 
+2024-11-14 15:53:08-SEANPNEX-:white_check_mark:updated repo link on homepage
+
