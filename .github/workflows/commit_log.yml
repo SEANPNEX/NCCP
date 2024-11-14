@@ -26,9 +26,18 @@ jobs:
           # Append to workflow.log
           echo "$LOG_ENTRY" >> workflow.log
           
-          # Append to docpage/docs/workflow.md if it exists
+          # If docpage/docs/workflow.md exists, rewrite it with the header and content from workflow.log
           if [ -f "docpage/docs/workflow.md" ]; then
-            echo "\n$LOG_ENTRY" >> docpage/docs/workflow.md
+            {
+              echo "---"
+              echo "prev:"
+              echo "  text: \"Map\""
+              echo "  link: \"docs/map/map_docs.md\""
+              echo "---"
+              echo "# Workflow"
+              echo
+              cat workflow.log
+            } > docpage/docs/workflow.md
           fi
 
       - name: Commit and push log files
