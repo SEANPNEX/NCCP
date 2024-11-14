@@ -18,7 +18,7 @@ export default defineConfig({
   sidebar: set_sidebar("docpage/docs"),
 
   socialLinks: [
-      { icon: 'github', link: 'https://https://github.com/SEANPNEX/NCCP/' }
+      { icon: 'github', link: 'https://github.com/SEANPNEX/NCCP/' }
     ]
   },
   footer:{
