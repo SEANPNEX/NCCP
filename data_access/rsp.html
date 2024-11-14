@@ -1,0 +1,1735 @@
+html
+
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Business Search</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" rel="stylesheet"/>
+<link href="css/accessnc_addon.css" rel="stylesheet" type="text/css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+<script src="js/form_validation_2021.js" type="text/javascript"></script>
+<script src="js/region_fips_selection.js" type="text/javascript"></script>
+<script src="js/occ_naics_crosswalk_2021.js" type="text/javascript"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-107603182-1"></script>
+<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-107603182-1');
+  </script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+$('#SOCDetailOcc2').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+  // do something...
+  
+
+    var snc2val=$("#SOCDetailOcc2").find('option:selected').val();
+    var snc3=$("#SOCCrosswalk2IndustryGroup");
+
+    snc3.empty();
+    for (var i=0;i<SOC_Naics_CrossWalk_Array.length;i++){
+	
+
+       if (SOC_Naics_CrossWalk_Array[i][1] == snc2val) {
+			//alert(((SOC_Naics_CrossWalk_Array[i][2] != SOC_Naics_CrossWalk_Array[i-1][2]) && (i>0));   
+			if 	((i==0) || ((SOC_Naics_CrossWalk_Array[i][2] != SOC_Naics_CrossWalk_Array[i-1][2]) && (i>0)) || ((SOC_Naics_CrossWalk_Array[i][2] == SOC_Naics_CrossWalk_Array[i-1][2]) &&  (SOC_Naics_CrossWalk_Array[i][1] != SOC_Naics_CrossWalk_Array[i-1][1]) &&  (i>0))  )
+				{	
+				
+					var naics_display_name = (SOC_Naics_CrossWalk_Array[i][2] == "999900") ? "" : SOC_Naics_CrossWalk_Array[i][2] + " ";		
+					snc3.append(new Option(naics_display_name + IND_Code_2Title[SOC_Naics_CrossWalk_Array[i][2]] ,SOC_Naics_CrossWalk_Array[i][2].substring(0,4)));
+				}
+				
+	}
+	
+	
+    }
+    
+  
+});
+
+
+  $('.naics_type a').on('shown.bs.tab', function(event){
+    var y = $(event.target).text();         // active tab
+		switch(y)
+			{ 
+			case "By Industry group (NAICS 4-digits)":
+			$("#industry_group_search_type").val("NAICS");
+				break;
+			
+			case "By Standard Occupational Classification (SOC)":
+			$("#industry_group_search_type").val("SOC");
+				break;
+				
+			default:
+			$("#industry_group_search_type").val("NAICS");
+			
+			
+			}
+	 
+	 
+	 });
+	 
+	 
+
+
+
+  });
+  
+
+
+</script>
+</head>
+<body>
+<div>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top navbar-custom" id="mainNav">
+<div class="container">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".navbar-main-collapse" data-toggle="collapse" type="button">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="https://d4.nccommerce.com/"><img class="img-responsive" src="img/d4.png"/></a>
+</div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse navbar-main-collapse">
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Data<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="https://d4.nccommerce.com/QCEWSelection.aspx" target="_blank">Industry Employment (QCEW)</a></li>
+<li><a class="dropdown-item" href="https://d4.nccommerce.com/LausSelection.aspx" target="_blank">Unemployment Rates (LAUS)</a></li>
+<li><a class="dropdown-item" href="https://d4.nccommerce.com/CesSelection.aspx" target="_blank">Payroll Jobs (CES)</a></li>
+<li><a class="dropdown-item" href="https://d4.nccommerce.com/OESSelection.aspx" target="_blank">Employment by Occupation (OEWS)</a></li>
+<li><a class="dropdown-item" href="https://d4.nccommerce.com/QCEWLargestEmployers.aspx" target="_blank">Largest Employers</a></li>
+<li><a class="dropdown-item" href="https://tools.nccareers.org/employmentprojections/industry_employment_projections.html" target="_blank">Employment Projections</a></li>
+</ul>
+</li>
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Other Tools<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="https://data-nccommerce.opendata.arcgis.com/" target="_blank">NC Commerce GIS</a></li>
+<li><a class="dropdown-item" href="https://accessnc.nccommerce.com/business/business_custom_search_infogroup.html">Business Search</a></li>
+<li><a class="dropdown-item" href="https://accessnc.nccommerce.com/DemographicsReports/">Demographic Reports</a></li>
+</ul>
+</li>
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="https://nccareers.org/" target="_blank">NC Careers</a></li>
+<li><a class="dropdown-item" href="https://www.ncworks.gov">NCWorks Online</a></li>
+<li><a class="dropdown-item" href="http://www.nccommerce.com/lead/research-publications/the-lead-feed">The LEAD Feed</a></li>
+<li><a class="dropdown-item" href="http://www.nctower.com/">NC Tower</a></li>
+<li><a class="dropdown-item" href="http://onthemap.ces.census.gov/">US Census - On The Map</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
+</nav>
+</div>
+<div class="container" id="web_content">
+<div class="page-header" style="margin-top:80px;">
+<h3>Business Search</h3>
+</div>
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#Quick_Search">NC Quick Search</a></li>
+<li><a data-toggle="tab" href="#Advanced_Search">Advanced Search</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade in active" id="Quick_Search">
+<form action="https://accessnc.nccommerce.com/BusinessSearch/Company/list" id="frmSelect" method="post" name="qfrmSelect" onsubmit="return qForm_Validation()" target="_blank">
+<fieldset class="hm-fieldset">
+<legend class="hm-legend">Please select by industry, company name, or keyword below:</legend>
+<div class="hm-property">
+<div class="form-group">
+<label class="control-label" for="qnaics">Select one industry by 4 digit NAICS: <a href="https://www.census.gov/naics/" target="_blank">(NAICS code description)</a></label>
+<select class="selectpicker form-control" data-live-search="true" data-show-subtext="true" data-size="15" id="qnaics" name="qnaics">
+<option data-subtext="" selected="" value="">Please select one industry group</option>
+<option data-subtext="Oilseed and Grain Farming" value="1111">1111</option>
+<option data-subtext="Vegetable and Melon Farming" value="1112">1112</option>
+<option data-subtext="Fruit and Tree Nut Farming" value="1113">1113</option>
+<option data-subtext="Greenhouse, Nursery, and Floriculture Production" value="1114">1114</option>
+<option data-subtext="Other Crop Farming" value="1119">1119</option>
+<option data-subtext="Cattle Ranching and Farming" value="1121">1121</option>
+<option data-subtext="Hog and Pig Farming" value="1122">1122</option>
+<option data-subtext="Poultry and Egg Production" value="1123">1123</option>
+<option data-subtext="Sheep and Goat Farming" value="1124">1124</option>
+<option data-subtext="Aquaculture" value="1125">1125</option>
+<option data-subtext="Other Animal Production" value="1129">1129</option>
+<option data-subtext="Timber Tract Operations" value="1131">1131</option>
+<option data-subtext="Forest Nurseries and Gathering of Forest Products" value="1132">1132</option>
+<option data-subtext="Logging" value="1133">1133</option>
+<option data-subtext="Fishing" value="1141">1141</option>
+<option data-subtext="Hunting and Trapping" value="1142">1142</option>
+<option data-subtext="Support Activities for Crop Production" value="1151">1151</option>
+<option data-subtext="Support Activities for Animal Production" value="1152">1152</option>
+<option data-subtext="Support Activities for Forestry" value="1153">1153</option>
+<option data-subtext="Oil and Gas Extraction" value="2111">2111</option>
+<option data-subtext="Coal Mining" value="2121">2121</option>
+<option data-subtext="Metal Ore Mining" value="2122">2122</option>
+<option data-subtext="Nonmetallic Mineral Mining and Quarrying" value="2123">2123</option>
+<option data-subtext="Support Activities for Mining" value="2131">2131</option>
+<option data-subtext="Electric Power Generation, Transmission and Distribution" value="2211">2211</option>
+<option data-subtext="Natural Gas Distribution" value="2212">2212</option>
+<option data-subtext="Water, Sewage and Other Systems" value="2213">2213</option>
+<option data-subtext="Residential Building Construction" value="2361">2361</option>
+<option data-subtext="Nonresidential Building Construction" value="2362">2362</option>
+<option data-subtext="Utility System Construction" value="2371">2371</option>
+<option data-subtext="Land Subdivision" value="2372">2372</option>
+<option data-subtext="Highway, Street, and Bridge Construction" value="2373">2373</option>
+<option data-subtext="Other Heavy and Civil Engineering Construction" value="2379">2379</option>
+<option data-subtext="Foundation, Structure, and Building Exterior Contractors" value="2381">2381</option>
+<option data-subtext="Building Equipment Contractors" value="2382">2382</option>
+<option data-subtext="Building Finishing Contractors" value="2383">2383</option>
+<option data-subtext="Other Specialty Trade Contractors" value="2389">2389</option>
+<option data-subtext="Animal Food Manufacturing" value="3111">3111</option>
+<option data-subtext="Grain and Oilseed Milling" value="3112">3112</option>
+<option data-subtext="Sugar and Confectionery Product Manufacturing" value="3113">3113</option>
+<option data-subtext="Fruit and Vegetable Preserving and Specialty Food Manufacturing" value="3114">3114</option>
+<option data-subtext="Dairy Product Manufacturing" value="3115">3115</option>
+<option data-subtext="Animal Slaughtering and Processing" value="3116">3116</option>
+<option data-subtext="Seafood Product Preparation and Packaging" value="3117">3117</option>
+<option data-subtext="Bakeries and Tortilla Manufacturing" value="3118">3118</option>
+<option data-subtext="Other Food Manufacturing" value="3119">3119</option>
+<option data-subtext="Beverage Manufacturing" value="3121">3121</option>
+<option data-subtext="Tobacco Manufacturing" value="3122">3122</option>
+<option data-subtext="Fiber, Yarn, and Thread Mills" value="3131">3131</option>
+<option data-subtext="Fabric Mills" value="3132">3132</option>
+<option data-subtext="Textile and Fabric Finishing and Fabric Coating Mills" value="3133">3133</option>
+<option data-subtext="Textile Furnishings Mills" value="3141">3141</option>
+<option data-subtext="Other Textile Product Mills" value="3149">3149</option>
+<option data-subtext="Apparel Knitting Mills" value="3151">3151</option>
+<option data-subtext="Cut and Sew Apparel Manufacturing" value="3152">3152</option>
+<option data-subtext="Apparel Accessories and Other Apparel Manufacturing" value="3159">3159</option>
+<option data-subtext="Leather and Hide Tanning and Finishing" value="3161">3161</option>
+<option data-subtext="Footwear Manufacturing" value="3162">3162</option>
+<option data-subtext="Other Leather and Allied Product Manufacturing" value="3169">3169</option>
+<option data-subtext="Sawmills and Wood Preservation" value="3211">3211</option>
+<option data-subtext="Veneer, Plywood, and Engineered Wood Product Manufacturing" value="3212">3212</option>
+<option data-subtext="Other Wood Product Manufacturing" value="3219">3219</option>
+<option data-subtext="Pulp, Paper, and Paperboard Mills" value="3221">3221</option>
+<option data-subtext="Converted Paper Product Manufacturing" value="3222">3222</option>
+<option data-subtext="Printing and Related Support Activities" value="3231">3231</option>
+<option data-subtext="Petroleum and Coal Products Manufacturing" value="3241">3241</option>
+<option data-subtext="Basic Chemical Manufacturing" value="3251">3251</option>
+<option data-subtext="Resin, Synthetic Rubber, and Artificial and Synthetic Fibers and Filaments Manufacturing" value="3252">3252</option>
+<option data-subtext="Pesticide, Fertilizer, and Other Agricultural Chemical Manufacturing" value="3253">3253</option>
+<option data-subtext="Pharmaceutical and Medicine Manufacturing" value="3254">3254</option>
+<option data-subtext="Paint, Coating, and Adhesive Manufacturing" value="3255">3255</option>
+<option data-subtext="Soap, Cleaning Compound, and Toilet Preparation Manufacturing" value="3256">3256</option>
+<option data-subtext="Other Chemical Product and Preparation Manufacturing" value="3259">3259</option>
+<option data-subtext="Plastics Product Manufacturing" value="3261">3261</option>
+<option data-subtext="Rubber Product Manufacturing" value="3262">3262</option>
+<option data-subtext="Clay Product and Refractory Manufacturing" value="3271">3271</option>
+<option data-subtext="Glass and Glass Product Manufacturing" value="3272">3272</option>
+<option data-subtext="Cement and Concrete Product Manufacturing" value="3273">3273</option>
+<option data-subtext="Lime and Gypsum Product Manufacturing" value="3274">3274</option>
+<option data-subtext="Other Nonmetallic Mineral Product Manufacturing" value="3279">3279</option>
+<option data-subtext="Iron and Steel Mills and Ferroalloy Manufacturing" value="3311">3311</option>
+<option data-subtext="Steel Product Manufacturing from Purchased Steel" value="3312">3312</option>
+<option data-subtext="Alumina and Aluminum Production and Processing" value="3313">3313</option>
+<option data-subtext="Nonferrous Metal (except Aluminum) Production and Processing" value="3314">3314</option>
+<option data-subtext="Foundries" value="3315">3315</option>
+<option data-subtext="Forging and Stamping" value="3321">3321</option>
+<option data-subtext="Cutlery and Handtool Manufacturing" value="3322">3322</option>
+<option data-subtext="Architectural and Structural Metals Manufacturing" value="3323">3323</option>
+<option data-subtext="Boiler, Tank, and Shipping Container Manufacturing" value="3324">3324</option>
+<option data-subtext="Hardware Manufacturing" value="3325">3325</option>
+<option data-subtext="Spring and Wire Product Manufacturing" value="3326">3326</option>
+<option data-subtext="Machine Shops; Turned Product; and Screw, Nut, and Bolt Manufacturing" value="3327">3327</option>
+<option data-subtext="Coating, Engraving, Heat Treating, and Allied Activities" value="3328">3328</option>
+<option data-subtext="Other Fabricated Metal Product Manufacturing" value="3329">3329</option>
+<option data-subtext="Agriculture, Construction, and Mining Machinery Manufacturing" value="3331">3331</option>
+<option data-subtext="Industrial Machinery Manufacturing" value="3332">3332</option>
+<option data-subtext="Commercial and Service Industry Machinery Manufacturing" value="3333">3333</option>
+<option data-subtext="Ventilation, Heating, Air-Conditioning, and Commercial Refrigeration Equipment Manufacturing" value="3334">3334</option>
+<option data-subtext="Metalworking Machinery Manufacturing" value="3335">3335</option>
+<option data-subtext="Engine, Turbine, and Power Transmission Equipment Manufacturing" value="3336">3336</option>
+<option data-subtext="Other General Purpose Machinery Manufacturing" value="3339">3339</option>
+<option data-subtext="Computer and Peripheral Equipment Manufacturing" value="3341">3341</option>
+<option data-subtext="Communications Equipment Manufacturing" value="3342">3342</option>
+<option data-subtext="Audio and Video Equipment Manufacturing" value="3343">3343</option>
+<option data-subtext="Semiconductor and Other Electronic Component Manufacturing" value="3344">3344</option>
+<option data-subtext="Navigational, Measuring, Electromedical, and Control Instruments Manufacturing" value="3345">3345</option>
+<option data-subtext="Manufacturing and Reproducing Magnetic and Optical Media" value="3346">3346</option>
+<option data-subtext="Electric Lighting Equipment Manufacturing" value="3351">3351</option>
+<option data-subtext="Household Appliance Manufacturing" value="3352">3352</option>
+<option data-subtext="Electrical Equipment Manufacturing" value="3353">3353</option>
+<option data-subtext="Other Electrical Equipment and Component Manufacturing" value="3359">3359</option>
+<option data-subtext="Motor Vehicle Manufacturing" value="3361">3361</option>
+<option data-subtext="Motor Vehicle Body and Trailer Manufacturing" value="3362">3362</option>
+<option data-subtext="Motor Vehicle Parts Manufacturing" value="3363">3363</option>
+<option data-subtext="Aerospace Product and Parts Manufacturing" value="3364">3364</option>
+<option data-subtext="Railroad Rolling Stock Manufacturing" value="3365">3365</option>
+<option data-subtext="Ship and Boat Building" value="3366">3366</option>
+<option data-subtext="Other Transportation Equipment Manufacturing" value="3369">3369</option>
+<option data-subtext="Household and Institutional Furniture and Kitchen Cabinet Manufacturing" value="3371">3371</option>
+<option data-subtext="Office Furniture (including Fixtures) Manufacturing" value="3372">3372</option>
+<option data-subtext="Other Furniture Related Product Manufacturing" value="3379">3379</option>
+<option data-subtext="Medical Equipment and Supplies Manufacturing" value="3391">3391</option>
+<option data-subtext="Other Miscellaneous Manufacturing" value="3399">3399</option>
+<option data-subtext="Motor Vehicle and Motor Vehicle Parts and Supplies Merchant Wholesalers" value="4231">4231</option>
+<option data-subtext="Furniture and Home Furnishing Merchant Wholesalers" value="4232">4232</option>
+<option data-subtext="Lumber and Other Construction Materials Merchant Wholesalers" value="4233">4233</option>
+<option data-subtext="Professional and Commercial Equipment and Supplies Merchant Wholesalers" value="4234">4234</option>
+<option data-subtext="Metal and Mineral (except Petroleum) Merchant Wholesalers" value="4235">4235</option>
+<option data-subtext="Household Appliances and Electrical and Electronic Goods Merchant Wholesalers" value="4236">4236</option>
+<option data-subtext="Hardware, and Plumbing and Heating Equipment and Supplies Merchant Wholesalers" value="4237">4237</option>
+<option data-subtext="Machinery, Equipment, and Supplies Merchant Wholesalers" value="4238">4238</option>
+<option data-subtext="Miscellaneous Durable Goods Merchant Wholesalers" value="4239">4239</option>
+<option data-subtext="Paper and Paper Product Merchant Wholesalers" value="4241">4241</option>
+<option data-subtext="Drugs and Druggists' Sundries Merchant Wholesalers" value="4242">4242</option>
+<option data-subtext="Apparel, Piece Goods, and Notions Merchant Wholesalers" value="4243">4243</option>
+<option data-subtext="Grocery and Related Product Merchant Wholesalers" value="4244">4244</option>
+<option data-subtext="Farm Product Raw Material Merchant Wholesalers" value="4245">4245</option>
+<option data-subtext="Chemical and Allied Products Merchant Wholesalers" value="4246">4246</option>
+<option data-subtext="Petroleum and Petroleum Products Merchant Wholesalers" value="4247">4247</option>
+<option data-subtext="Beer, Wine, and Distilled Alcoholic Beverage Merchant Wholesalers" value="4248">4248</option>
+<option data-subtext="Miscellaneous Nondurable Goods Merchant Wholesalers" value="4249">4249</option>
+<option data-subtext="Wholesale Electronic Markets and Agents and Brokers" value="4251">4251</option>
+<option data-subtext="Automobile Dealers" value="4411">4411</option>
+<option data-subtext="Other Motor Vehicle Dealers" value="4412">4412</option>
+<option data-subtext="Automotive Parts, Accessories, and Tire Stores" value="4413">4413</option>
+<option data-subtext="Furniture Stores" value="4421">4421</option>
+<option data-subtext="Home Furnishings Stores" value="4422">4422</option>
+<option data-subtext="Electronics and Appliance Stores" value="4431">4431</option>
+<option data-subtext="Building Material and Supplies Dealers" value="4441">4441</option>
+<option data-subtext="Lawn and Garden Equipment and Supplies Stores" value="4442">4442</option>
+<option data-subtext="Grocery Stores" value="4451">4451</option>
+<option data-subtext="Specialty Food Stores" value="4452">4452</option>
+<option data-subtext="Beer, Wine, and Liquor Stores" value="4453">4453</option>
+<option data-subtext="Health and Personal Care Stores" value="4461">4461</option>
+<option data-subtext="Gasoline Stations" value="4471">4471</option>
+<option data-subtext="Clothing Stores" value="4481">4481</option>
+<option data-subtext="Shoe Stores" value="4482">4482</option>
+<option data-subtext="Jewelry, Luggage, and Leather Goods Stores" value="4483">4483</option>
+<option data-subtext="Sporting Goods, Hobby, and Musical Instrument Stores" value="4511">4511</option>
+<option data-subtext="Book Stores and News Dealers" value="4512">4512</option>
+<option data-subtext="Department Stores" value="4522">4522</option>
+<option data-subtext="General Merchandise Stores, including Warehouse Clubs and Supercenters" value="4523">4523</option>
+<option data-subtext="Florists" value="4531">4531</option>
+<option data-subtext="Office Supplies, Stationery, and Gift Stores" value="4532">4532</option>
+<option data-subtext="Used Merchandise Stores" value="4533">4533</option>
+<option data-subtext="Other Miscellaneous Store Retailers" value="4539">4539</option>
+<option data-subtext="Electronic Shopping and Mail-Order Houses" value="4541">4541</option>
+<option data-subtext="Vending Machine Operators" value="4542">4542</option>
+<option data-subtext="Direct Selling Establishments" value="4543">4543</option>
+<option data-subtext="Scheduled Air Transportation" value="4811">4811</option>
+<option data-subtext="Nonscheduled Air Transportation" value="4812">4812</option>
+<option data-subtext="Rail Transportation" value="4821">4821</option>
+<option data-subtext="Deep Sea, Coastal, and Great Lakes Water Transportation" value="4831">4831</option>
+<option data-subtext="Inland Water Transportation" value="4832">4832</option>
+<option data-subtext="General Freight Trucking" value="4841">4841</option>
+<option data-subtext="Specialized Freight Trucking" value="4842">4842</option>
+<option data-subtext="Urban Transit Systems" value="4851">4851</option>
+<option data-subtext="Interurban and Rural Bus Transportation" value="4852">4852</option>
+<option data-subtext="Taxi and Limousine Service" value="4853">4853</option>
+<option data-subtext="School and Employee Bus Transportation" value="4854">4854</option>
+<option data-subtext="Charter Bus Industry" value="4855">4855</option>
+<option data-subtext="Other Transit and Ground Passenger Transportation" value="4859">4859</option>
+<option data-subtext="Pipeline Transportation of Crude Oil" value="4861">4861</option>
+<option data-subtext="Pipeline Transportation of Natural Gas" value="4862">4862</option>
+<option data-subtext="Other Pipeline Transportation" value="4869">4869</option>
+<option data-subtext="Scenic and Sightseeing Transportation, Land" value="4871">4871</option>
+<option data-subtext="Scenic and Sightseeing Transportation, Water" value="4872">4872</option>
+<option data-subtext="Scenic and Sightseeing Transportation, Other" value="4879">4879</option>
+<option data-subtext="Support Activities for Air Transportation" value="4881">4881</option>
+<option data-subtext="Support Activities for Rail Transportation" value="4882">4882</option>
+<option data-subtext="Support Activities for Water Transportation" value="4883">4883</option>
+<option data-subtext="Support Activities for Road Transportation" value="4884">4884</option>
+<option data-subtext="Freight Transportation Arrangement" value="4885">4885</option>
+<option data-subtext="Other Support Activities for Transportation" value="4889">4889</option>
+<option data-subtext="Postal Service" value="4911">4911</option>
+<option data-subtext="Couriers and Express Delivery Services" value="4921">4921</option>
+<option data-subtext="Local Messengers and Local Delivery" value="4922">4922</option>
+<option data-subtext="Warehousing and Storage" value="4931">4931</option>
+<option data-subtext="Newspaper, Periodical, Book, and Directory Publishers" value="5111">5111</option>
+<option data-subtext="Software Publishers" value="5112">5112</option>
+<option data-subtext="Motion Picture and Video Industries" value="5121">5121</option>
+<option data-subtext="Sound Recording Industries" value="5122">5122</option>
+<option data-subtext="Radio and Television Broadcasting" value="5151">5151</option>
+<option data-subtext="Cable and Other Subscription Programming" value="5152">5152</option>
+<option data-subtext="Wired and Wireless Telecommunications Carriers" value="5173">5173</option>
+<option data-subtext="Satellite Telecommunications" value="5174">5174</option>
+<option data-subtext="Other Telecommunications" value="5179">5179</option>
+<option data-subtext="Data Processing, Hosting, and Related Services" value="5182">5182</option>
+<option data-subtext="Other Information Services" value="5191">5191</option>
+<option data-subtext="Monetary Authorities-Central Bank" value="5211">5211</option>
+<option data-subtext="Depository Credit Intermediation" value="5221">5221</option>
+<option data-subtext="Nondepository Credit Intermediation" value="5222">5222</option>
+<option data-subtext="Activities Related to Credit Intermediation" value="5223">5223</option>
+<option data-subtext="Securities and Commodity Contracts Intermediation and Brokerage" value="5231">5231</option>
+<option data-subtext="Securities and Commodity Exchanges" value="5232">5232</option>
+<option data-subtext="Other Financial Investment Activities" value="5239">5239</option>
+<option data-subtext="Insurance Carriers" value="5241">5241</option>
+<option data-subtext="Agencies, Brokerages, and Other Insurance Related Activities" value="5242">5242</option>
+<option data-subtext="Insurance and Employee Benefit Funds" value="5251">5251</option>
+<option data-subtext="Other Investment Pools and Funds" value="5259">5259</option>
+<option data-subtext="Lessors of Real Estate" value="5311">5311</option>
+<option data-subtext="Offices of Real Estate Agents and Brokers" value="5312">5312</option>
+<option data-subtext="Activities Related to Real Estate" value="5313">5313</option>
+<option data-subtext="Automotive Equipment Rental and Leasing" value="5321">5321</option>
+<option data-subtext="Consumer Goods Rental" value="5322">5322</option>
+<option data-subtext="General Rental Centers" value="5323">5323</option>
+<option data-subtext="Commercial and Industrial Machinery and Equipment Rental and Leasing" value="5324">5324</option>
+<option data-subtext="Lessors of Nonfinancial Intangible Assets (except Copyrighted Works)" value="5331">5331</option>
+<option data-subtext="Legal Services" value="5411">5411</option>
+<option data-subtext="Accounting, Tax Preparation, Bookkeeping, and Payroll Services" value="5412">5412</option>
+<option data-subtext="Architectural, Engineering, and Related Services" value="5413">5413</option>
+<option data-subtext="Specialized Design Services" value="5414">5414</option>
+<option data-subtext="Computer Systems Design and Related Services" value="5415">5415</option>
+<option data-subtext="Management, Scientific, and Technical Consulting Services" value="5416">5416</option>
+<option data-subtext="Scientific Research and Development Services" value="5417">5417</option>
+<option data-subtext="Advertising, Public Relations, and Related Services" value="5418">5418</option>
+<option data-subtext="Other Professional, Scientific, and Technical Services" value="5419">5419</option>
+<option data-subtext="Management of Companies and Enterprises" value="5511">5511</option>
+<option data-subtext="Office Administrative Services" value="5611">5611</option>
+<option data-subtext="Facilities Support Services" value="5612">5612</option>
+<option data-subtext="Employment Services" value="5613">5613</option>
+<option data-subtext="Business Support Services" value="5614">5614</option>
+<option data-subtext="Travel Arrangement and Reservation Services" value="5615">5615</option>
+<option data-subtext="Investigation and Security Services" value="5616">5616</option>
+<option data-subtext="Services to Buildings and Dwellings" value="5617">5617</option>
+<option data-subtext="Other Support Services" value="5619">5619</option>
+<option data-subtext="Waste Collection" value="5621">5621</option>
+<option data-subtext="Waste Treatment and Disposal" value="5622">5622</option>
+<option data-subtext="Remediation and Other Waste Management Services" value="5629">5629</option>
+<option data-subtext="Elementary and Secondary Schools" value="6111">6111</option>
+<option data-subtext="Junior Colleges" value="6112">6112</option>
+<option data-subtext="Colleges, Universities, and Professional Schools" value="6113">6113</option>
+<option data-subtext="Business Schools and Computer and Management Training" value="6114">6114</option>
+<option data-subtext="Technical and Trade Schools" value="6115">6115</option>
+<option data-subtext="Other Schools and Instruction" value="6116">6116</option>
+<option data-subtext="Educational Support Services" value="6117">6117</option>
+<option data-subtext="Offices of Physicians" value="6211">6211</option>
+<option data-subtext="Offices of Dentists" value="6212">6212</option>
+<option data-subtext="Offices of Other Health Practitioners" value="6213">6213</option>
+<option data-subtext="Outpatient Care Centers" value="6214">6214</option>
+<option data-subtext="Medical and Diagnostic Laboratories" value="6215">6215</option>
+<option data-subtext="Home Health Care Services" value="6216">6216</option>
+<option data-subtext="Other Ambulatory Health Care Services" value="6219">6219</option>
+<option data-subtext="General Medical and Surgical Hospitals" value="6221">6221</option>
+<option data-subtext="Psychiatric and Substance Abuse Hospitals" value="6222">6222</option>
+<option data-subtext="Specialty (except Psychiatric and Substance Abuse) Hospitals" value="6223">6223</option>
+<option data-subtext="Nursing Care Facilities (Skilled Nursing Facilities)" value="6231">6231</option>
+<option data-subtext="Residential Intellectual and Developmental Disability, Mental Health, and Substance Abuse Facilities" value="6232">6232</option>
+<option data-subtext="Continuing Care Retirement Communities and Assisted Living Facilities for the Elderly" value="6233">6233</option>
+<option data-subtext="Other Residential Care Facilities" value="6239">6239</option>
+<option data-subtext="Individual and Family Services" value="6241">6241</option>
+<option data-subtext="Community Food and Housing, and Emergency and Other Relief Services" value="6242">6242</option>
+<option data-subtext="Vocational Rehabilitation Services" value="6243">6243</option>
+<option data-subtext="Child Day Care Services" value="6244">6244</option>
+<option data-subtext="Performing Arts Companies" value="7111">7111</option>
+<option data-subtext="Spectator Sports" value="7112">7112</option>
+<option data-subtext="Promoters of Performing Arts, Sports, and Similar Events" value="7113">7113</option>
+<option data-subtext="Agents and Managers for Artists, Athletes, Entertainers, and Other Public Figures" value="7114">7114</option>
+<option data-subtext="Independent Artists, Writers, and Performers" value="7115">7115</option>
+<option data-subtext="Museums, Historical Sites, and Similar Institutions" value="7121">7121</option>
+<option data-subtext="Amusement Parks and Arcades" value="7131">7131</option>
+<option data-subtext="Gambling Industries" value="7132">7132</option>
+<option data-subtext="Other Amusement and Recreation Industries" value="7139">7139</option>
+<option data-subtext="Traveler Accommodation" value="7211">7211</option>
+<option data-subtext="RV (Recreational Vehicle) Parks and Recreational Camps" value="7212">7212</option>
+<option data-subtext="Rooming and Boarding Houses, Dormitories, and Workers' Camps" value="7213">7213</option>
+<option data-subtext="Special Food Services" value="7223">7223</option>
+<option data-subtext="Drinking Places (Alcoholic Beverages)" value="7224">7224</option>
+<option data-subtext="Restaurants and Other Eating Places" value="7225">7225</option>
+<option data-subtext="Automotive Repair and Maintenance" value="8111">8111</option>
+<option data-subtext="Electronic and Precision Equipment Repair and Maintenance" value="8112">8112</option>
+<option data-subtext="Commercial and Industrial Machinery and Equipment (except Automotive and Electronic) Repair and Maintenance" value="8113">8113</option>
+<option data-subtext="Personal and Household Goods Repair and Maintenance" value="8114">8114</option>
+<option data-subtext="Personal Care Services" value="8121">8121</option>
+<option data-subtext="Death Care Services" value="8122">8122</option>
+<option data-subtext="Drycleaning and Laundry Services" value="8123">8123</option>
+<option data-subtext="Other Personal Services" value="8129">8129</option>
+<option data-subtext="Religious Organizations" value="8131">8131</option>
+<option data-subtext="Grantmaking and Giving Services" value="8132">8132</option>
+<option data-subtext="Social Advocacy Organizations" value="8133">8133</option>
+<option data-subtext="Civic and Social Organizations" value="8134">8134</option>
+<option data-subtext="Business, Professional, Labor, Political, and Similar Organizations" value="8139">8139</option>
+<option data-subtext="Private Households" value="8141">8141</option>
+<option data-subtext="Executive, Legislative, and Other General Government Support" value="9211">9211</option>
+<option data-subtext="Justice, Public Order, and Safety Activities" value="9221">9221</option>
+<option data-subtext="Administration of Human Resource Programs" value="9231">9231</option>
+<option data-subtext="Administration of Environmental Quality Programs" value="9241">9241</option>
+<option data-subtext="Administration of Housing Programs, Urban Planning, and Community Development" value="9251">9251</option>
+<option data-subtext="Administration of Economic Programs" value="9261">9261</option>
+<option data-subtext="Space Research and Technology" value="9271">9271</option>
+<option data-subtext="National Security and International Affairs" value="9281">9281</option>
+</select>
+</div>
+<br/>
+<div class="form-group">
+<label class="control-label" for="CompanyName"> Company Name or Keyword:</label>
+<div class="input-group">
+<input class="form-control" id="CompanyName" name="CompanyName" type="text"/>
+<span class="input-group-addon"> (				
+					<label class="radio-inline"><input checked="" name="stype" type="radio" value="c"/>contains</label>
+<label class="radio-inline"><input name="stype" type="radio" value="s"/>begins with</label>
+					) </span>
+</div>
+</div>
+<input id="naics" name="naics" type="hidden" value=""/>
+<input id="STFIPS" name="STFIPS" type="hidden" value="37"/>
+<div class="form-group">
+<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div>
+<div class="tab-pane fade" id="Advanced_Search">
+<div>
+<form action="https://accessnc.nccommerce.com/BusinessSearch/Company/list" class="form-horizontal col-md-12" id="frmSelect" method="post" name="frmSelect" onsubmit="return Form_Validation()" role="form" target="_blank">
+<fieldset class="hm-fieldset">
+<legend class="hm-legend">Select a Geographic Area</legend>
+<div class="tab-content" style="margin-top:10px;">
+<div class="form-group">
+<label class="col-sm-2 control-label" for="regionCategory">Area Type:</label>
+<div class="col-sm-6">
+<select class="form-control col-md-12" id="regionCategory" name="regionCategory" onchange="setArea();">
+</select>
+</div>
+</div>
+</div>
+<div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="region">Area Name:</label>
+<div class="col-sm-6">
+<select class="form-control col-md-12" id="region" name="region">
+</select>
+</div>
+</div>	(Notes: Business locations in counties up to 30 miles outside of NC are included when the Region extends past the NC border.)
+				</div>
+</fieldset>
+<br/>
+<fieldset class="hm-fieldset">
+<legend class="hm-legend">Select Industry Group</legend>
+<div class="hm-property">
+<ul class="nav nav-tabs naics_type">
+<li class="active"><a data-toggle="tab" href="#view_indstry1">By Industry group (NAICS 4-digits)</a></li>
+<li><a data-toggle="tab" href="#view_indstry2">By Standard Occupational Classification (SOC)</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade in active" id="view_indstry1">
+<div class="form-group col-sm-12">
+<label class="control-label" for="IndustryGroup2">Select one industry by 4 digit NAICS:</label>
+<select class="selectpicker form-control show-tick input-sm" data-live-search="true" data-none-selected-text="Please select one industry group" data-show-subtext="true" data-size="15" id="IndustryGroup2" name="IndustryGroup2">
+<option data-subtext="Please select one industry group" value=""></option>
+<option data-subtext="Sheep and Goat Farming" value="1124">1124</option>
+<option data-subtext="Aquaculture" value="1125">1125</option>
+<option data-subtext="Other Animal Production" value="1129">1129</option>
+<option data-subtext="Timber Tract Operations" value="1131">1131</option>
+<option data-subtext="Forest Nurseries and Gathering of Forest Products" value="1132">1132</option>
+<option data-subtext="Logging" value="1133">1133</option>
+<option data-subtext="Fishing" value="1141">1141</option>
+<option data-subtext="Hunting and Trapping" value="1142">1142</option>
+<option data-subtext="Support Activities for Crop Production" value="1151">1151</option>
+<option data-subtext="Support Activities for Animal Production" value="1152">1152</option>
+<option data-subtext="Support Activities for Forestry" value="1153">1153</option>
+<option data-subtext="Oil and Gas Extraction" value="2111">2111</option>
+<option data-subtext="Coal Mining" value="2121">2121</option>
+<option data-subtext="Oilseed and Grain Farming" value="1111">1111</option>
+<option data-subtext="Vegetable and Melon Farming" value="1112">1112</option>
+<option data-subtext="Fruit and Tree Nut Farming" value="1113">1113</option>
+<option data-subtext="Greenhouse, Nursery, and Floriculture Production" value="1114">1114</option>
+<option data-subtext="Other Crop Farming" value="1119">1119</option>
+<option data-subtext="Cattle Ranching and Farming" value="1121">1121</option>
+<option data-subtext="Hog and Pig Farming" value="1122">1122</option>
+<option data-subtext="Poultry and Egg Production" value="1123">1123</option>
+<option data-subtext="Metal Ore Mining" value="2122">2122</option>
+<option data-subtext="Nonmetallic Mineral Mining and Quarrying" value="2123">2123</option>
+<option data-subtext="Support Activities for Mining" value="2131">2131</option>
+<option data-subtext="Electric Power Generation, Transmission and Distribution" value="2211">2211</option>
+<option data-subtext="Natural Gas Distribution" value="2212">2212</option>
+<option data-subtext="Water, Sewage and Other Systems" value="2213">2213</option>
+<option data-subtext="Residential Building Construction" value="2361">2361</option>
+<option data-subtext="Nonresidential Building Construction" value="2362">2362</option>
+<option data-subtext="Utility System Construction" value="2371">2371</option>
+<option data-subtext="Land Subdivision" value="2372">2372</option>
+<option data-subtext="Highway, Street, and Bridge Construction" value="2373">2373</option>
+<option data-subtext="Other Heavy and Civil Engineering Construction" value="2379">2379</option>
+<option data-subtext="Foundation, Structure, and Building Exterior Contractors" value="2381">2381</option>
+<option data-subtext="Building Equipment Contractors" value="2382">2382</option>
+<option data-subtext="Building Finishing Contractors" value="2383">2383</option>
+<option data-subtext="Other Specialty Trade Contractors" value="2389">2389</option>
+<option data-subtext="Animal Food Manufacturing" value="3111">3111</option>
+<option data-subtext="Grain and Oilseed Milling" value="3112">3112</option>
+<option data-subtext="Sugar and Confectionery Product Manufacturing" value="3113">3113</option>
+<option data-subtext="Fruit and Vegetable Preserving and Specialty Food Manufacturing" value="3114">3114</option>
+<option data-subtext="Dairy Product Manufacturing" value="3115">3115</option>
+<option data-subtext="Animal Slaughtering and Processing" value="3116">3116</option>
+<option data-subtext="Seafood Product Preparation and Packaging" value="3117">3117</option>
+<option data-subtext="Bakeries and Tortilla Manufacturing" value="3118">3118</option>
+<option data-subtext="Other Food Manufacturing" value="3119">3119</option>
+<option data-subtext="Beverage Manufacturing" value="3121">3121</option>
+<option data-subtext="Tobacco Manufacturing" value="3122">3122</option>
+<option data-subtext="Fiber, Yarn, and Thread Mills" value="3131">3131</option>
+<option data-subtext="Fabric Mills" value="3132">3132</option>
+<option data-subtext="Textile and Fabric Finishing and Fabric Coating Mills" value="3133">3133</option>
+<option data-subtext="Textile Furnishings Mills" value="3141">3141</option>
+<option data-subtext="Other Textile Product Mills" value="3149">3149</option>
+<option data-subtext="Apparel Knitting Mills" value="3151">3151</option>
+<option data-subtext="Cut and Sew Apparel Manufacturing" value="3152">3152</option>
+<option data-subtext="Apparel Accessories and Other Apparel Manufacturing" value="3159">3159</option>
+<option data-subtext="Leather and Hide Tanning and Finishing" value="3161">3161</option>
+<option data-subtext="Footwear Manufacturing" value="3162">3162</option>
+<option data-subtext="Other Leather and Allied Product Manufacturing" value="3169">3169</option>
+<option data-subtext="Sawmills and Wood Preservation" value="3211">3211</option>
+<option data-subtext="Veneer, Plywood, and Engineered Wood Product Manufacturing" value="3212">3212</option>
+<option data-subtext="Other Wood Product Manufacturing" value="3219">3219</option>
+<option data-subtext="Pulp, Paper, and Paperboard Mills" value="3221">3221</option>
+<option data-subtext="Converted Paper Product Manufacturing" value="3222">3222</option>
+<option data-subtext="Printing and Related Support Activities" value="3231">3231</option>
+<option data-subtext="Petroleum and Coal Products Manufacturing" value="3241">3241</option>
+<option data-subtext="Basic Chemical Manufacturing" value="3251">3251</option>
+<option data-subtext="Resin, Synthetic Rubber, and Artificial and Synthetic Fibers and Filaments Manufacturing" value="3252">3252</option>
+<option data-subtext="Pesticide, Fertilizer, and Other Agricultural Chemical Manufacturing" value="3253">3253</option>
+<option data-subtext="Pharmaceutical and Medicine Manufacturing" value="3254">3254</option>
+<option data-subtext="Paint, Coating, and Adhesive Manufacturing" value="3255">3255</option>
+<option data-subtext="Soap, Cleaning Compound, and Toilet Preparation Manufacturing" value="3256">3256</option>
+<option data-subtext="Other Chemical Product and Preparation Manufacturing" value="3259">3259</option>
+<option data-subtext="Plastics Product Manufacturing" value="3261">3261</option>
+<option data-subtext="Rubber Product Manufacturing" value="3262">3262</option>
+<option data-subtext="Clay Product and Refractory Manufacturing" value="3271">3271</option>
+<option data-subtext="Glass and Glass Product Manufacturing" value="3272">3272</option>
+<option data-subtext="Cement and Concrete Product Manufacturing" value="3273">3273</option>
+<option data-subtext="Lime and Gypsum Product Manufacturing" value="3274">3274</option>
+<option data-subtext="Other Nonmetallic Mineral Product Manufacturing" value="3279">3279</option>
+<option data-subtext="Iron and Steel Mills and Ferroalloy Manufacturing" value="3311">3311</option>
+<option data-subtext="Steel Product Manufacturing from Purchased Steel" value="3312">3312</option>
+<option data-subtext="Alumina and Aluminum Production and Processing" value="3313">3313</option>
+<option data-subtext="Nonferrous Metal (except Aluminum) Production and Processing" value="3314">3314</option>
+<option data-subtext="Foundries" value="3315">3315</option>
+<option data-subtext="Forging and Stamping" value="3321">3321</option>
+<option data-subtext="Cutlery and Handtool Manufacturing" value="3322">3322</option>
+<option data-subtext="Architectural and Structural Metals Manufacturing" value="3323">3323</option>
+<option data-subtext="Boiler, Tank, and Shipping Container Manufacturing" value="3324">3324</option>
+<option data-subtext="Hardware Manufacturing" value="3325">3325</option>
+<option data-subtext="Spring and Wire Product Manufacturing" value="3326">3326</option>
+<option data-subtext="Machine Shops; Turned Product; and Screw, Nut, and Bolt Manufacturing" value="3327">3327</option>
+<option data-subtext="Coating, Engraving, Heat Treating, and Allied Activities" value="3328">3328</option>
+<option data-subtext="Other Fabricated Metal Product Manufacturing" value="3329">3329</option>
+<option data-subtext="Agriculture, Construction, and Mining Machinery Manufacturing" value="3331">3331</option>
+<option data-subtext="Industrial Machinery Manufacturing" value="3332">3332</option>
+<option data-subtext="Commercial and Service Industry Machinery Manufacturing" value="3333">3333</option>
+<option data-subtext="Ventilation, Heating, Air-Conditioning, and Commercial Refrigeration Equipment Manufacturing" value="3334">3334</option>
+<option data-subtext="Metalworking Machinery Manufacturing" value="3335">3335</option>
+<option data-subtext="Engine, Turbine, and Power Transmission Equipment Manufacturing" value="3336">3336</option>
+<option data-subtext="Other General Purpose Machinery Manufacturing" value="3339">3339</option>
+<option data-subtext="Computer and Peripheral Equipment Manufacturing" value="3341">3341</option>
+<option data-subtext="Communications Equipment Manufacturing" value="3342">3342</option>
+<option data-subtext="Audio and Video Equipment Manufacturing" value="3343">3343</option>
+<option data-subtext="Semiconductor and Other Electronic Component Manufacturing" value="3344">3344</option>
+<option data-subtext="Navigational, Measuring, Electromedical, and Control Instruments Manufacturing" value="3345">3345</option>
+<option data-subtext="Manufacturing and Reproducing Magnetic and Optical Media" value="3346">3346</option>
+<option data-subtext="Electric Lighting Equipment Manufacturing" value="3351">3351</option>
+<option data-subtext="Household Appliance Manufacturing" value="3352">3352</option>
+<option data-subtext="Electrical Equipment Manufacturing" value="3353">3353</option>
+<option data-subtext="Other Electrical Equipment and Component Manufacturing" value="3359">3359</option>
+<option data-subtext="Motor Vehicle Manufacturing" value="3361">3361</option>
+<option data-subtext="Motor Vehicle Body and Trailer Manufacturing" value="3362">3362</option>
+<option data-subtext="Motor Vehicle Parts Manufacturing" value="3363">3363</option>
+<option data-subtext="Aerospace Product and Parts Manufacturing" value="3364">3364</option>
+<option data-subtext="Railroad Rolling Stock Manufacturing" value="3365">3365</option>
+<option data-subtext="Ship and Boat Building" value="3366">3366</option>
+<option data-subtext="Other Transportation Equipment Manufacturing" value="3369">3369</option>
+<option data-subtext="Household and Institutional Furniture and Kitchen Cabinet Manufacturing" value="3371">3371</option>
+<option data-subtext="Office Furniture (including Fixtures) Manufacturing" value="3372">3372</option>
+<option data-subtext="Other Furniture Related Product Manufacturing" value="3379">3379</option>
+<option data-subtext="Medical Equipment and Supplies Manufacturing" value="3391">3391</option>
+<option data-subtext="Other Miscellaneous Manufacturing" value="3399">3399</option>
+<option data-subtext="Motor Vehicle and Motor Vehicle Parts and Supplies Merchant Wholesalers" value="4231">4231</option>
+<option data-subtext="Furniture and Home Furnishing Merchant Wholesalers" value="4232">4232</option>
+<option data-subtext="Lumber and Other Construction Materials Merchant Wholesalers" value="4233">4233</option>
+<option data-subtext="Professional and Commercial Equipment and Supplies Merchant Wholesalers" value="4234">4234</option>
+<option data-subtext="Metal and Mineral (except Petroleum) Merchant Wholesalers" value="4235">4235</option>
+<option data-subtext="Household Appliances and Electrical and Electronic Goods Merchant Wholesalers" value="4236">4236</option>
+<option data-subtext="Hardware, and Plumbing and Heating Equipment and Supplies Merchant Wholesalers" value="4237">4237</option>
+<option data-subtext="Machinery, Equipment, and Supplies Merchant Wholesalers" value="4238">4238</option>
+<option data-subtext="Miscellaneous Durable Goods Merchant Wholesalers" value="4239">4239</option>
+<option data-subtext="Paper and Paper Product Merchant Wholesalers" value="4241">4241</option>
+<option data-subtext="Drugs and Druggists' Sundries Merchant Wholesalers" value="4242">4242</option>
+<option data-subtext="Apparel, Piece Goods, and Notions Merchant Wholesalers" value="4243">4243</option>
+<option data-subtext="Grocery and Related Product Merchant Wholesalers" value="4244">4244</option>
+<option data-subtext="Farm Product Raw Material Merchant Wholesalers" value="4245">4245</option>
+<option data-subtext="Chemical and Allied Products Merchant Wholesalers" value="4246">4246</option>
+<option data-subtext="Petroleum and Petroleum Products Merchant Wholesalers" value="4247">4247</option>
+<option data-subtext="Beer, Wine, and Distilled Alcoholic Beverage Merchant Wholesalers" value="4248">4248</option>
+<option data-subtext="Miscellaneous Nondurable Goods Merchant Wholesalers" value="4249">4249</option>
+<option data-subtext="Wholesale Electronic Markets and Agents and Brokers" value="4251">4251</option>
+<option data-subtext="Automobile Dealers" value="4411">4411</option>
+<option data-subtext="Other Motor Vehicle Dealers" value="4412">4412</option>
+<option data-subtext="Automotive Parts, Accessories, and Tire Stores" value="4413">4413</option>
+<option data-subtext="Furniture Stores" value="4421">4421</option>
+<option data-subtext="Home Furnishings Stores" value="4422">4422</option>
+<option data-subtext="Electronics and Appliance Stores" value="4431">4431</option>
+<option data-subtext="Building Material and Supplies Dealers" value="4441">4441</option>
+<option data-subtext="Lawn and Garden Equipment and Supplies Stores" value="4442">4442</option>
+<option data-subtext="Grocery Stores" value="4451">4451</option>
+<option data-subtext="Specialty Food Stores" value="4452">4452</option>
+<option data-subtext="Beer, Wine, and Liquor Stores" value="4453">4453</option>
+<option data-subtext="Health and Personal Care Stores" value="4461">4461</option>
+<option data-subtext="Gasoline Stations" value="4471">4471</option>
+<option data-subtext="Clothing Stores" value="4481">4481</option>
+<option data-subtext="Shoe Stores" value="4482">4482</option>
+<option data-subtext="Jewelry, Luggage, and Leather Goods Stores" value="4483">4483</option>
+<option data-subtext="Sporting Goods, Hobby, and Musical Instrument Stores" value="4511">4511</option>
+<option data-subtext="Book Stores and News Dealers" value="4512">4512</option>
+<option data-subtext="Department Stores" value="4522">4522</option>
+<option data-subtext="General Merchandise Stores, including Warehouse Clubs and Supercenters" value="4523">4523</option>
+<option data-subtext="Florists" value="4531">4531</option>
+<option data-subtext="Office Supplies, Stationery, and Gift Stores" value="4532">4532</option>
+<option data-subtext="Used Merchandise Stores" value="4533">4533</option>
+<option data-subtext="Other Miscellaneous Store Retailers" value="4539">4539</option>
+<option data-subtext="Electronic Shopping and Mail-Order Houses" value="4541">4541</option>
+<option data-subtext="Vending Machine Operators" value="4542">4542</option>
+<option data-subtext="Direct Selling Establishments" value="4543">4543</option>
+<option data-subtext="Scheduled Air Transportation" value="4811">4811</option>
+<option data-subtext="Nonscheduled Air Transportation" value="4812">4812</option>
+<option data-subtext="Rail Transportation" value="4821">4821</option>
+<option data-subtext="Deep Sea, Coastal, and Great Lakes Water Transportation" value="4831">4831</option>
+<option data-subtext="Inland Water Transportation" value="4832">4832</option>
+<option data-subtext="General Freight Trucking" value="4841">4841</option>
+<option data-subtext="Specialized Freight Trucking" value="4842">4842</option>
+<option data-subtext="Urban Transit Systems" value="4851">4851</option>
+<option data-subtext="Interurban and Rural Bus Transportation" value="4852">4852</option>
+<option data-subtext="Taxi and Limousine Service" value="4853">4853</option>
+<option data-subtext="School and Employee Bus Transportation" value="4854">4854</option>
+<option data-subtext="Charter Bus Industry" value="4855">4855</option>
+<option data-subtext="Other Transit and Ground Passenger Transportation" value="4859">4859</option>
+<option data-subtext="Pipeline Transportation of Crude Oil" value="4861">4861</option>
+<option data-subtext="Pipeline Transportation of Natural Gas" value="4862">4862</option>
+<option data-subtext="Other Pipeline Transportation" value="4869">4869</option>
+<option data-subtext="Scenic and Sightseeing Transportation, Land" value="4871">4871</option>
+<option data-subtext="Scenic and Sightseeing Transportation, Water" value="4872">4872</option>
+<option data-subtext="Scenic and Sightseeing Transportation, Other" value="4879">4879</option>
+<option data-subtext="Support Activities for Air Transportation" value="4881">4881</option>
+<option data-subtext="Support Activities for Rail Transportation" value="4882">4882</option>
+<option data-subtext="Support Activities for Water Transportation" value="4883">4883</option>
+<option data-subtext="Support Activities for Road Transportation" value="4884">4884</option>
+<option data-subtext="Freight Transportation Arrangement" value="4885">4885</option>
+<option data-subtext="Other Support Activities for Transportation" value="4889">4889</option>
+<option data-subtext="Postal Service" value="4911">4911</option>
+<option data-subtext="Couriers and Express Delivery Services" value="4921">4921</option>
+<option data-subtext="Local Messengers and Local Delivery" value="4922">4922</option>
+<option data-subtext="Warehousing and Storage" value="4931">4931</option>
+<option data-subtext="Newspaper, Periodical, Book, and Directory Publishers" value="5111">5111</option>
+<option data-subtext="Software Publishers" value="5112">5112</option>
+<option data-subtext="Motion Picture and Video Industries" value="5121">5121</option>
+<option data-subtext="Sound Recording Industries" value="5122">5122</option>
+<option data-subtext="Radio and Television Broadcasting" value="5151">5151</option>
+<option data-subtext="Cable and Other Subscription Programming" value="5152">5152</option>
+<option data-subtext="Wired and Wireless Telecommunications Carriers" value="5173">5173</option>
+<option data-subtext="Satellite Telecommunications" value="5174">5174</option>
+<option data-subtext="Other Telecommunications" value="5179">5179</option>
+<option data-subtext="Data Processing, Hosting, and Related Services" value="5182">5182</option>
+<option data-subtext="Other Information Services" value="5191">5191</option>
+<option data-subtext="Monetary Authorities-Central Bank" value="5211">5211</option>
+<option data-subtext="Depository Credit Intermediation" value="5221">5221</option>
+<option data-subtext="Nondepository Credit Intermediation" value="5222">5222</option>
+<option data-subtext="Activities Related to Credit Intermediation" value="5223">5223</option>
+<option data-subtext="Securities and Commodity Contracts Intermediation and Brokerage" value="5231">5231</option>
+<option data-subtext="Securities and Commodity Exchanges" value="5232">5232</option>
+<option data-subtext="Other Financial Investment Activities" value="5239">5239</option>
+<option data-subtext="Insurance Carriers" value="5241">5241</option>
+<option data-subtext="Agencies, Brokerages, and Other Insurance Related Activities" value="5242">5242</option>
+<option data-subtext="Insurance and Employee Benefit Funds" value="5251">5251</option>
+<option data-subtext="Other Investment Pools and Funds" value="5259">5259</option>
+<option data-subtext="Lessors of Real Estate" value="5311">5311</option>
+<option data-subtext="Offices of Real Estate Agents and Brokers" value="5312">5312</option>
+<option data-subtext="Activities Related to Real Estate" value="5313">5313</option>
+<option data-subtext="Automotive Equipment Rental and Leasing" value="5321">5321</option>
+<option data-subtext="Consumer Goods Rental" value="5322">5322</option>
+<option data-subtext="General Rental Centers" value="5323">5323</option>
+<option data-subtext="Commercial and Industrial Machinery and Equipment Rental and Leasing" value="5324">5324</option>
+<option data-subtext="Lessors of Nonfinancial Intangible Assets (except Copyrighted Works)" value="5331">5331</option>
+<option data-subtext="Legal Services" value="5411">5411</option>
+<option data-subtext="Accounting, Tax Preparation, Bookkeeping, and Payroll Services" value="5412">5412</option>
+<option data-subtext="Architectural, Engineering, and Related Services" value="5413">5413</option>
+<option data-subtext="Specialized Design Services" value="5414">5414</option>
+<option data-subtext="Computer Systems Design and Related Services" value="5415">5415</option>
+<option data-subtext="Management, Scientific, and Technical Consulting Services" value="5416">5416</option>
+<option data-subtext="Scientific Research and Development Services" value="5417">5417</option>
+<option data-subtext="Advertising, Public Relations, and Related Services" value="5418">5418</option>
+<option data-subtext="Other Professional, Scientific, and Technical Services" value="5419">5419</option>
+<option data-subtext="Management of Companies and Enterprises" value="5511">5511</option>
+<option data-subtext="Office Administrative Services" value="5611">5611</option>
+<option data-subtext="Facilities Support Services" value="5612">5612</option>
+<option data-subtext="Employment Services" value="5613">5613</option>
+<option data-subtext="Business Support Services" value="5614">5614</option>
+<option data-subtext="Travel Arrangement and Reservation Services" value="5615">5615</option>
+<option data-subtext="Investigation and Security Services" value="5616">5616</option>
+<option data-subtext="Services to Buildings and Dwellings" value="5617">5617</option>
+<option data-subtext="Other Support Services" value="5619">5619</option>
+<option data-subtext="Waste Collection" value="5621">5621</option>
+<option data-subtext="Waste Treatment and Disposal" value="5622">5622</option>
+<option data-subtext="Remediation and Other Waste Management Services" value="5629">5629</option>
+<option data-subtext="Elementary and Secondary Schools" value="6111">6111</option>
+<option data-subtext="Junior Colleges" value="6112">6112</option>
+<option data-subtext="Colleges, Universities, and Professional Schools" value="6113">6113</option>
+<option data-subtext="Business Schools and Computer and Management Training" value="6114">6114</option>
+<option data-subtext="Technical and Trade Schools" value="6115">6115</option>
+<option data-subtext="Other Schools and Instruction" value="6116">6116</option>
+<option data-subtext="Educational Support Services" value="6117">6117</option>
+<option data-subtext="Offices of Physicians" value="6211">6211</option>
+<option data-subtext="Offices of Dentists" value="6212">6212</option>
+<option data-subtext="Offices of Other Health Practitioners" value="6213">6213</option>
+<option data-subtext="Outpatient Care Centers" value="6214">6214</option>
+<option data-subtext="Medical and Diagnostic Laboratories" value="6215">6215</option>
+<option data-subtext="Home Health Care Services" value="6216">6216</option>
+<option data-subtext="Other Ambulatory Health Care Services" value="6219">6219</option>
+<option data-subtext="General Medical and Surgical Hospitals" value="6221">6221</option>
+<option data-subtext="Psychiatric and Substance Abuse Hospitals" value="6222">6222</option>
+<option data-subtext="Specialty (except Psychiatric and Substance Abuse) Hospitals" value="6223">6223</option>
+<option data-subtext="Nursing Care Facilities (Skilled Nursing Facilities)" value="6231">6231</option>
+<option data-subtext="Residential Intellectual and Developmental Disability, Mental Health, and Substance Abuse Facilities" value="6232">6232</option>
+<option data-subtext="Continuing Care Retirement Communities and Assisted Living Facilities for the Elderly" value="6233">6233</option>
+<option data-subtext="Other Residential Care Facilities" value="6239">6239</option>
+<option data-subtext="Individual and Family Services" value="6241">6241</option>
+<option data-subtext="Community Food and Housing, and Emergency and Other Relief Services" value="6242">6242</option>
+<option data-subtext="Vocational Rehabilitation Services" value="6243">6243</option>
+<option data-subtext="Child Day Care Services" value="6244">6244</option>
+<option data-subtext="Performing Arts Companies" value="7111">7111</option>
+<option data-subtext="Spectator Sports" value="7112">7112</option>
+<option data-subtext="Promoters of Performing Arts, Sports, and Similar Events" value="7113">7113</option>
+<option data-subtext="Agents and Managers for Artists, Athletes, Entertainers, and Other Public Figures" value="7114">7114</option>
+<option data-subtext="Independent Artists, Writers, and Performers" value="7115">7115</option>
+<option data-subtext="Museums, Historical Sites, and Similar Institutions" value="7121">7121</option>
+<option data-subtext="Amusement Parks and Arcades" value="7131">7131</option>
+<option data-subtext="Gambling Industries" value="7132">7132</option>
+<option data-subtext="Other Amusement and Recreation Industries" value="7139">7139</option>
+<option data-subtext="Traveler Accommodation" value="7211">7211</option>
+<option data-subtext="RV (Recreational Vehicle) Parks and Recreational Camps" value="7212">7212</option>
+<option data-subtext="Rooming and Boarding Houses, Dormitories, and Workers' Camps" value="7213">7213</option>
+<option data-subtext="Special Food Services" value="7223">7223</option>
+<option data-subtext="Drinking Places (Alcoholic Beverages)" value="7224">7224</option>
+<option data-subtext="Restaurants and Other Eating Places" value="7225">7225</option>
+<option data-subtext="Automotive Repair and Maintenance" value="8111">8111</option>
+<option data-subtext="Electronic and Precision Equipment Repair and Maintenance" value="8112">8112</option>
+<option data-subtext="Commercial and Industrial Machinery and Equipment (except Automotive and Electronic) Repair and Maintenance" value="8113">8113</option>
+<option data-subtext="Personal and Household Goods Repair and Maintenance" value="8114">8114</option>
+<option data-subtext="Personal Care Services" value="8121">8121</option>
+<option data-subtext="Death Care Services" value="8122">8122</option>
+<option data-subtext="Drycleaning and Laundry Services" value="8123">8123</option>
+<option data-subtext="Other Personal Services" value="8129">8129</option>
+<option data-subtext="Religious Organizations" value="8131">8131</option>
+<option data-subtext="Grantmaking and Giving Services" value="8132">8132</option>
+<option data-subtext="Social Advocacy Organizations" value="8133">8133</option>
+<option data-subtext="Civic and Social Organizations" value="8134">8134</option>
+<option data-subtext="Business, Professional, Labor, Political, and Similar Organizations" value="8139">8139</option>
+<option data-subtext="Private Households" value="8141">8141</option>
+<option data-subtext="Executive, Legislative, and Other General Government Support" value="9211">9211</option>
+<option data-subtext="Justice, Public Order, and Safety Activities" value="9221">9221</option>
+<option data-subtext="Administration of Human Resource Programs" value="9231">9231</option>
+<option data-subtext="Administration of Environmental Quality Programs" value="9241">9241</option>
+<option data-subtext="Administration of Housing Programs, Urban Planning, and Community Development" value="9251">9251</option>
+<option data-subtext="Administration of Economic Programs" value="9261">9261</option>
+<option data-subtext="Space Research and Technology" value="9271">9271</option>
+<option data-subtext="National Security and International Affairs" value="9281">9281</option>
+</select>
+</div>
+</div>
+<div class="tab-pane fade" id="view_indstry2">
+<div class="form-group col-sm-12">
+<div class="input-group">
+<span class="input-group-addon"><b>SOC Detailed Occupation:</b></span>
+<select class="form-control selectpicker" data-live-search="true" data-show-subtext="true" data-size="15" id="SOCDetailOcc2" name="SOCDetailOcc2">
+<option data-subtext="" selected="" value="99-9999">Select an Occupation</option>
+<option data-subtext="Chief executives" value="11-1011">11-1011</option>
+<option data-subtext="General and operations managers" value="11-1021">11-1021</option>
+<option data-subtext="Legislators" value="11-1031">11-1031</option>
+<option data-subtext="Advertising and promotions managers" value="11-2011">11-2011</option>
+<option data-subtext="Marketing managers" value="11-2021">11-2021</option>
+<option data-subtext="Sales managers" value="11-2022">11-2022</option>
+<option data-subtext="Computer and information systems managers" value="11-3021">11-3021</option>
+<option data-subtext="Financial managers" value="11-3031">11-3031</option>
+<option data-subtext="Industrial production managers" value="11-3051">11-3051</option>
+<option data-subtext="Purchasing managers" value="11-3061">11-3061</option>
+<option data-subtext="Transportation, storage, and distribution managers" value="11-3071">11-3071</option>
+<option data-subtext="Compensation and benefits managers" value="11-3111">11-3111</option>
+<option data-subtext="Human resources managers" value="11-3121">11-3121</option>
+<option data-subtext="Training and development managers" value="11-3131">11-3131</option>
+<option data-subtext="Farmers, ranchers, and other agricultural managers" value="11-9013">11-9013</option>
+<option data-subtext="Construction managers" value="11-9021">11-9021</option>
+<option data-subtext="Education and childcare administrators, preschool and daycare" value="11-9031">11-9031</option>
+<option data-subtext="Education administrators, kindergarten through secondary" value="11-9032">11-9032</option>
+<option data-subtext="Education administrators, postsecondary" value="11-9033">11-9033</option>
+<option data-subtext="Education administrators, all other" value="11-9039">11-9039</option>
+<option data-subtext="Architectural and engineering managers" value="11-9041">11-9041</option>
+<option data-subtext="Food service managers" value="11-9051">11-9051</option>
+<option data-subtext="Gambling managers" value="11-9071">11-9071</option>
+<option data-subtext="Lodging managers" value="11-9081">11-9081</option>
+<option data-subtext="Medical and health services managers" value="11-9111">11-9111</option>
+<option data-subtext="Natural sciences managers" value="11-9121">11-9121</option>
+<option data-subtext="Postmasters and mail superintendents" value="11-9131">11-9131</option>
+<option data-subtext="Property, real estate, and community association managers" value="11-9141">11-9141</option>
+<option data-subtext="Social and community service managers" value="11-9151">11-9151</option>
+<option data-subtext="Emergency management directors" value="11-9161">11-9161</option>
+<option data-subtext="Funeral home managers" value="11-9171">11-9171</option>
+<option data-subtext="Personal service managers, all other; entertainment and recreation managers, except gambling; and managers, all other" value="11-9198">11-9198</option>
+<option data-subtext="Agents and business managers of artists, performers, and athletes" value="13-1011">13-1011</option>
+<option data-subtext="Claims adjusters, examiners, and investigators" value="13-1031">13-1031</option>
+<option data-subtext="Insurance appraisers, auto damage" value="13-1032">13-1032</option>
+<option data-subtext="Compliance officers" value="13-1041">13-1041</option>
+<option data-subtext="Cost estimators" value="13-1051">13-1051</option>
+<option data-subtext="Human resources specialists" value="13-1071">13-1071</option>
+<option data-subtext="Farm labor contractors" value="13-1074">13-1074</option>
+<option data-subtext="Labor relations specialists" value="13-1075">13-1075</option>
+<option data-subtext="Logisticians" value="13-1081">13-1081</option>
+<option data-subtext="Management analysts" value="13-1111">13-1111</option>
+<option data-subtext="Meeting, convention, and event planners" value="13-1121">13-1121</option>
+<option data-subtext="Fundraisers" value="13-1131">13-1131</option>
+<option data-subtext="Compensation, benefits, and job analysis specialists" value="13-1141">13-1141</option>
+<option data-subtext="Training and development specialists" value="13-1151">13-1151</option>
+<option data-subtext="Market research analysts and marketing specialists" value="13-1161">13-1161</option>
+<option data-subtext="Project management specialists and business operations specialists, all other" value="13-1198">13-1198</option>
+<option data-subtext="Accountants and auditors" value="13-2011">13-2011</option>
+<option data-subtext="Budget analysts" value="13-2031">13-2031</option>
+<option data-subtext="Credit analysts" value="13-2041">13-2041</option>
+<option data-subtext="Personal financial advisors" value="13-2052">13-2052</option>
+<option data-subtext="Insurance underwriters" value="13-2053">13-2053</option>
+<option data-subtext="Financial examiners" value="13-2061">13-2061</option>
+<option data-subtext="Credit counselors" value="13-2071">13-2071</option>
+<option data-subtext="Loan officers" value="13-2072">13-2072</option>
+<option data-subtext="Tax examiners and collectors, and revenue agents" value="13-2081">13-2081</option>
+<option data-subtext="Tax preparers" value="13-2082">13-2082</option>
+<option data-subtext="Financial and investment analysts, financial risk specialists, and financial specialists, all other" value="13-2098">13-2098</option>
+<option data-subtext="Computer systems analysts" value="15-1211">15-1211</option>
+<option data-subtext="Information security analysts" value="15-1212">15-1212</option>
+<option data-subtext="Computer and information research scientists" value="15-1221">15-1221</option>
+<option data-subtext="Computer network support specialists" value="15-1231">15-1231</option>
+<option data-subtext="Computer user support specialists" value="15-1232">15-1232</option>
+<option data-subtext="Computer network architects" value="15-1241">15-1241</option>
+<option data-subtext="Network and computer systems administrators" value="15-1244">15-1244</option>
+<option data-subtext="Database administrators and architects" value="15-1245">15-1245</option>
+<option data-subtext="Computer programmers" value="15-1251">15-1251</option>
+<option data-subtext="Software developers and software quality assurance analysts and testers" value="15-1256">15-1256</option>
+<option data-subtext="Web developers and digital interface designers" value="15-1257">15-1257</option>
+<option data-subtext="Computer occupations, all other" value="15-1299">15-1299</option>
+<option data-subtext="Actuaries" value="15-2011">15-2011</option>
+<option data-subtext="Mathematicians" value="15-2021">15-2021</option>
+<option data-subtext="Operations research analysts" value="15-2031">15-2031</option>
+<option data-subtext="Statisticians" value="15-2041">15-2041</option>
+<option data-subtext="Data scientists and mathematical science occupations, all other" value="15-2098">15-2098</option>
+<option data-subtext="Architects, except landscape and naval" value="17-1011">17-1011</option>
+<option data-subtext="Landscape architects" value="17-1012">17-1012</option>
+<option data-subtext="Cartographers and photogrammetrists" value="17-1021">17-1021</option>
+<option data-subtext="Surveyors" value="17-1022">17-1022</option>
+<option data-subtext="Aerospace engineers" value="17-2011">17-2011</option>
+<option data-subtext="Agricultural engineers" value="17-2021">17-2021</option>
+<option data-subtext="Bioengineers and biomedical engineers" value="17-2031">17-2031</option>
+<option data-subtext="Chemical engineers" value="17-2041">17-2041</option>
+<option data-subtext="Civil engineers" value="17-2051">17-2051</option>
+<option data-subtext="Computer hardware engineers" value="17-2061">17-2061</option>
+<option data-subtext="Electrical engineers" value="17-2071">17-2071</option>
+<option data-subtext="Electronics engineers, except computer" value="17-2072">17-2072</option>
+<option data-subtext="Environmental engineers" value="17-2081">17-2081</option>
+<option data-subtext="Health and safety engineers, except mining safety engineers and inspectors" value="17-2111">17-2111</option>
+<option data-subtext="Industrial engineers" value="17-2112">17-2112</option>
+<option data-subtext="Marine engineers and naval architects" value="17-2121">17-2121</option>
+<option data-subtext="Materials engineers" value="17-2131">17-2131</option>
+<option data-subtext="Mechanical engineers" value="17-2141">17-2141</option>
+<option data-subtext="Mining and geological engineers, including mining safety engineers" value="17-2151">17-2151</option>
+<option data-subtext="Nuclear engineers" value="17-2161">17-2161</option>
+<option data-subtext="Petroleum engineers" value="17-2171">17-2171</option>
+<option data-subtext="Engineers, all other" value="17-2199">17-2199</option>
+<option data-subtext="Architectural and civil drafters" value="17-3011">17-3011</option>
+<option data-subtext="Electrical and electronics drafters" value="17-3012">17-3012</option>
+<option data-subtext="Mechanical drafters" value="17-3013">17-3013</option>
+<option data-subtext="Drafters, all other" value="17-3019">17-3019</option>
+<option data-subtext="Aerospace engineering and operations technologists and technicians" value="17-3021">17-3021</option>
+<option data-subtext="Civil engineering technologists and technicians" value="17-3022">17-3022</option>
+<option data-subtext="Electrical and electronic engineering technologists and technicians" value="17-3023">17-3023</option>
+<option data-subtext="Electro-mechanical and mechatronics technologists and technicians" value="17-3024">17-3024</option>
+<option data-subtext="Environmental engineering technologists and technicians" value="17-3025">17-3025</option>
+<option data-subtext="Industrial engineering technologists and technicians" value="17-3026">17-3026</option>
+<option data-subtext="Mechanical engineering technologists and technicians" value="17-3027">17-3027</option>
+<option data-subtext="Surveying and mapping technicians" value="17-3031">17-3031</option>
+<option data-subtext="Calibration technologists and technicians and engineering technologists and technicians, except drafters, all other" value="17-3098">17-3098</option>
+<option data-subtext="Animal scientists" value="19-1011">19-1011</option>
+<option data-subtext="Food scientists and technologists" value="19-1012">19-1012</option>
+<option data-subtext="Soil and plant scientists" value="19-1013">19-1013</option>
+<option data-subtext="Biochemists and biophysicists" value="19-1021">19-1021</option>
+<option data-subtext="Microbiologists" value="19-1022">19-1022</option>
+<option data-subtext="Zoologists and wildlife biologists" value="19-1023">19-1023</option>
+<option data-subtext="Biological scientists, all other" value="19-1029">19-1029</option>
+<option data-subtext="Conservation scientists" value="19-1031">19-1031</option>
+<option data-subtext="Foresters" value="19-1032">19-1032</option>
+<option data-subtext="Epidemiologists" value="19-1041">19-1041</option>
+<option data-subtext="Medical scientists, except epidemiologists" value="19-1042">19-1042</option>
+<option data-subtext="Life scientists, all other" value="19-1099">19-1099</option>
+<option data-subtext="Astronomers" value="19-2011">19-2011</option>
+<option data-subtext="Physicists" value="19-2012">19-2012</option>
+<option data-subtext="Atmospheric and space scientists" value="19-2021">19-2021</option>
+<option data-subtext="Chemists" value="19-2031">19-2031</option>
+<option data-subtext="Materials scientists" value="19-2032">19-2032</option>
+<option data-subtext="Environmental scientists and specialists, including health" value="19-2041">19-2041</option>
+<option data-subtext="Geoscientists, except hydrologists and geographers" value="19-2042">19-2042</option>
+<option data-subtext="Hydrologists" value="19-2043">19-2043</option>
+<option data-subtext="Physical scientists, all other" value="19-2099">19-2099</option>
+<option data-subtext="Economists" value="19-3011">19-3011</option>
+<option data-subtext="Survey researchers" value="19-3022">19-3022</option>
+<option data-subtext="Clinical, counseling, and school psychologists" value="19-3031">19-3031</option>
+<option data-subtext="Industrial-organizational psychologists" value="19-3032">19-3032</option>
+<option data-subtext="Psychologists, all other" value="19-3039">19-3039</option>
+<option data-subtext="Sociologists" value="19-3041">19-3041</option>
+<option data-subtext="Urban and regional planners" value="19-3051">19-3051</option>
+<option data-subtext="Anthropologists and archeologists" value="19-3091">19-3091</option>
+<option data-subtext="Geographers" value="19-3092">19-3092</option>
+<option data-subtext="Historians" value="19-3093">19-3093</option>
+<option data-subtext="Political scientists" value="19-3094">19-3094</option>
+<option data-subtext="Social scientists and related workers, all other" value="19-3099">19-3099</option>
+<option data-subtext="Biological technicians" value="19-4021">19-4021</option>
+<option data-subtext="Chemical technicians" value="19-4031">19-4031</option>
+<option data-subtext="Environmental science and protection technicians, including health" value="19-4042">19-4042</option>
+<option data-subtext="Geological and hydrologic technicians" value="19-4045">19-4045</option>
+<option data-subtext="Nuclear technicians" value="19-4051">19-4051</option>
+<option data-subtext="Social science research assistants" value="19-4061">19-4061</option>
+<option data-subtext="Forest and conservation technicians" value="19-4071">19-4071</option>
+<option data-subtext="Forensic science technicians" value="19-4092">19-4092</option>
+<option data-subtext="Life, physical, and social science technicians, all other" value="19-4099">19-4099</option>
+<option data-subtext="Occupational health and safety specialists" value="19-5011">19-5011</option>
+<option data-subtext="Occupational health and safety technicians" value="19-5012">19-5012</option>
+<option data-subtext="Educational, guidance, and career counselors and advisors" value="21-1012">21-1012</option>
+<option data-subtext="Marriage and family therapists" value="21-1013">21-1013</option>
+<option data-subtext="Rehabilitation counselors" value="21-1015">21-1015</option>
+<option data-subtext="Substance abuse, behavioral disorder, and mental health counselors" value="21-1018">21-1018</option>
+<option data-subtext="Counselors, all other" value="21-1019">21-1019</option>
+<option data-subtext="Child, family, and school social workers" value="21-1021">21-1021</option>
+<option data-subtext="Healthcare social workers" value="21-1022">21-1022</option>
+<option data-subtext="Mental health and substance abuse social workers" value="21-1023">21-1023</option>
+<option data-subtext="Social workers, all other" value="21-1029">21-1029</option>
+<option data-subtext="Health education specialists" value="21-1091">21-1091</option>
+<option data-subtext="Probation officers and correctional treatment specialists" value="21-1092">21-1092</option>
+<option data-subtext="Social and human service assistants" value="21-1093">21-1093</option>
+<option data-subtext="Community health workers" value="21-1094">21-1094</option>
+<option data-subtext="Community and social service specialists, all other" value="21-1099">21-1099</option>
+<option data-subtext="Clergy" value="21-2011">21-2011</option>
+<option data-subtext="Directors, religious activities and education" value="21-2021">21-2021</option>
+<option data-subtext="Religious workers, all other" value="21-2099">21-2099</option>
+<option data-subtext="Lawyers" value="23-1011">23-1011</option>
+<option data-subtext="Judicial law clerks" value="23-1012">23-1012</option>
+<option data-subtext="Administrative law judges, adjudicators, and hearing officers" value="23-1021">23-1021</option>
+<option data-subtext="Arbitrators, mediators, and conciliators" value="23-1022">23-1022</option>
+<option data-subtext="Judges, magistrate judges, and magistrates" value="23-1023">23-1023</option>
+<option data-subtext="Paralegals and legal assistants" value="23-2011">23-2011</option>
+<option data-subtext="Title examiners, abstractors, and searchers" value="23-2093">23-2093</option>
+<option data-subtext="Legal support workers, all other" value="23-2099">23-2099</option>
+<option data-subtext="Business teachers, postsecondary" value="25-1011">25-1011</option>
+<option data-subtext="Computer science teachers, postsecondary" value="25-1021">25-1021</option>
+<option data-subtext="Mathematical science teachers, postsecondary" value="25-1022">25-1022</option>
+<option data-subtext="Architecture teachers, postsecondary" value="25-1031">25-1031</option>
+<option data-subtext="Engineering teachers, postsecondary" value="25-1032">25-1032</option>
+<option data-subtext="Agricultural sciences teachers, postsecondary" value="25-1041">25-1041</option>
+<option data-subtext="Biological science teachers, postsecondary" value="25-1042">25-1042</option>
+<option data-subtext="Forestry and conservation science teachers, postsecondary" value="25-1043">25-1043</option>
+<option data-subtext="Atmospheric, earth, marine, and space sciences teachers, postsecondary" value="25-1051">25-1051</option>
+<option data-subtext="Chemistry teachers, postsecondary" value="25-1052">25-1052</option>
+<option data-subtext="Environmental science teachers, postsecondary" value="25-1053">25-1053</option>
+<option data-subtext="Physics teachers, postsecondary" value="25-1054">25-1054</option>
+<option data-subtext="Anthropology and archeology teachers, postsecondary" value="25-1061">25-1061</option>
+<option data-subtext="Area, ethnic, and cultural studies teachers, postsecondary" value="25-1062">25-1062</option>
+<option data-subtext="Economics teachers, postsecondary" value="25-1063">25-1063</option>
+<option data-subtext="Geography teachers, postsecondary" value="25-1064">25-1064</option>
+<option data-subtext="Political science teachers, postsecondary" value="25-1065">25-1065</option>
+<option data-subtext="Psychology teachers, postsecondary" value="25-1066">25-1066</option>
+<option data-subtext="Sociology teachers, postsecondary" value="25-1067">25-1067</option>
+<option data-subtext="Social sciences teachers, postsecondary, all other" value="25-1069">25-1069</option>
+<option data-subtext="Health specialties teachers, postsecondary" value="25-1071">25-1071</option>
+<option data-subtext="Nursing instructors and teachers, postsecondary" value="25-1072">25-1072</option>
+<option data-subtext="Education teachers, postsecondary" value="25-1081">25-1081</option>
+<option data-subtext="Library science teachers, postsecondary" value="25-1082">25-1082</option>
+<option data-subtext="Criminal justice and law enforcement teachers, postsecondary" value="25-1111">25-1111</option>
+<option data-subtext="Law teachers, postsecondary" value="25-1112">25-1112</option>
+<option data-subtext="Social work teachers, postsecondary" value="25-1113">25-1113</option>
+<option data-subtext="Art, drama, and music teachers, postsecondary" value="25-1121">25-1121</option>
+<option data-subtext="Communications teachers, postsecondary" value="25-1122">25-1122</option>
+<option data-subtext="English language and literature teachers, postsecondary" value="25-1123">25-1123</option>
+<option data-subtext="Foreign language and literature teachers, postsecondary" value="25-1124">25-1124</option>
+<option data-subtext="History teachers, postsecondary" value="25-1125">25-1125</option>
+<option data-subtext="Philosophy and religion teachers, postsecondary" value="25-1126">25-1126</option>
+<option data-subtext="Family and consumer sciences teachers, postsecondary" value="25-1192">25-1192</option>
+<option data-subtext="Recreation and fitness studies teachers, postsecondary" value="25-1193">25-1193</option>
+<option data-subtext="Career/technical education teachers, postsecondary" value="25-1194">25-1194</option>
+<option data-subtext="Postsecondary teachers, all other" value="25-1199">25-1199</option>
+<option data-subtext="Preschool teachers, except special education" value="25-2011">25-2011</option>
+<option data-subtext="Kindergarten teachers, except special education" value="25-2012">25-2012</option>
+<option data-subtext="Elementary school teachers, except special education" value="25-2021">25-2021</option>
+<option data-subtext="Middle school teachers, except special and career/technical education" value="25-2022">25-2022</option>
+<option data-subtext="Career/technical education teachers, middle school" value="25-2023">25-2023</option>
+<option data-subtext="Secondary school teachers, except special and career/technical education" value="25-2031">25-2031</option>
+<option data-subtext="Career/technical education teachers, secondary school" value="25-2032">25-2032</option>
+<option data-subtext="Special education teachers, preschool" value="25-2051">25-2051</option>
+<option data-subtext="Special education teachers, kindergarten and elementary school" value="25-2052">25-2052</option>
+<option data-subtext="Special education teachers, middle school" value="25-2057">25-2057</option>
+<option data-subtext="Special education teachers, secondary school" value="25-2058">25-2058</option>
+<option data-subtext="Special education teachers, all other" value="25-2059">25-2059</option>
+<option data-subtext="Adult basic education, adult secondary education, and English as a Second Language instructors" value="25-3011">25-3011</option>
+<option data-subtext="Self-enrichment teachers" value="25-3021">25-3021</option>
+<option data-subtext="Substitute teachers, short-term" value="25-3031">25-3031</option>
+<option data-subtext="Tutors and teachers and instructors, all other" value="25-3097">25-3097</option>
+<option data-subtext="Archivists" value="25-4011">25-4011</option>
+<option data-subtext="Curators" value="25-4012">25-4012</option>
+<option data-subtext="Museum technicians and conservators" value="25-4013">25-4013</option>
+<option data-subtext="Librarians and media collections specialists" value="25-4022">25-4022</option>
+<option data-subtext="Library technicians" value="25-4031">25-4031</option>
+<option data-subtext="Farm and home management educators" value="25-9021">25-9021</option>
+<option data-subtext="Instructional coordinators" value="25-9031">25-9031</option>
+<option data-subtext="Teaching assistants, postsecondary" value="25-9044">25-9044</option>
+<option data-subtext="Teaching assistants, except postsecondary" value="25-9045">25-9045</option>
+<option data-subtext="Educational instruction and library workers, all other" value="25-9099">25-9099</option>
+<option data-subtext="Art directors" value="27-1011">27-1011</option>
+<option data-subtext="Craft artists" value="27-1012">27-1012</option>
+<option data-subtext="Fine artists, including painters, sculptors, and illustrators" value="27-1013">27-1013</option>
+<option data-subtext="Special effects artists and animators" value="27-1014">27-1014</option>
+<option data-subtext="Artists and related workers, all other" value="27-1019">27-1019</option>
+<option data-subtext="Commercial and industrial designers" value="27-1021">27-1021</option>
+<option data-subtext="Fashion designers" value="27-1022">27-1022</option>
+<option data-subtext="Floral designers" value="27-1023">27-1023</option>
+<option data-subtext="Graphic designers" value="27-1024">27-1024</option>
+<option data-subtext="Interior designers" value="27-1025">27-1025</option>
+<option data-subtext="Merchandise displayers and window trimmers" value="27-1026">27-1026</option>
+<option data-subtext="Set and exhibit designers" value="27-1027">27-1027</option>
+<option data-subtext="Designers, all other" value="27-1029">27-1029</option>
+<option data-subtext="Actors" value="27-2011">27-2011</option>
+<option data-subtext="Producers and directors" value="27-2012">27-2012</option>
+<option data-subtext="Athletes and sports competitors" value="27-2021">27-2021</option>
+<option data-subtext="Coaches and scouts" value="27-2022">27-2022</option>
+<option data-subtext="Umpires, referees, and other sports officials" value="27-2023">27-2023</option>
+<option data-subtext="Dancers" value="27-2031">27-2031</option>
+<option data-subtext="Choreographers" value="27-2032">27-2032</option>
+<option data-subtext="Music directors and composers" value="27-2041">27-2041</option>
+<option data-subtext="Musicians and singers" value="27-2042">27-2042</option>
+<option data-subtext="Broadcast announcers and radio disc jockeys" value="27-3011">27-3011</option>
+<option data-subtext="News analysts, reporters, and journalists" value="27-3023">27-3023</option>
+<option data-subtext="Public relations specialists" value="27-3031">27-3031</option>
+<option data-subtext="Editors" value="27-3041">27-3041</option>
+<option data-subtext="Technical writers" value="27-3042">27-3042</option>
+<option data-subtext="Writers and authors" value="27-3043">27-3043</option>
+<option data-subtext="Interpreters and translators" value="27-3091">27-3091</option>
+<option data-subtext="Court reporters and simultaneous captioners" value="27-3092">27-3092</option>
+<option data-subtext="Media and communication workers, all other" value="27-3099">27-3099</option>
+<option data-subtext="Audio and video technicians" value="27-4011">27-4011</option>
+<option data-subtext="Broadcast technicians" value="27-4012">27-4012</option>
+<option data-subtext="Sound engineering technicians" value="27-4014">27-4014</option>
+<option data-subtext="Photographers" value="27-4021">27-4021</option>
+<option data-subtext="Camera operators, television, video, and film" value="27-4031">27-4031</option>
+<option data-subtext="Film and video editors" value="27-4032">27-4032</option>
+<option data-subtext="Lighting technicians and media and communication equipment workers, all other" value="27-4098">27-4098</option>
+<option data-subtext="Chiropractors" value="29-1011">29-1011</option>
+<option data-subtext="Dentists, general" value="29-1021">29-1021</option>
+<option data-subtext="Oral and maxillofacial surgeons" value="29-1022">29-1022</option>
+<option data-subtext="Orthodontists" value="29-1023">29-1023</option>
+<option data-subtext="Prosthodontists" value="29-1024">29-1024</option>
+<option data-subtext="Dentists, all other specialists" value="29-1029">29-1029</option>
+<option data-subtext="Dietitians and nutritionists" value="29-1031">29-1031</option>
+<option data-subtext="Optometrists" value="29-1041">29-1041</option>
+<option data-subtext="Pharmacists" value="29-1051">29-1051</option>
+<option data-subtext="Physician assistants" value="29-1071">29-1071</option>
+<option data-subtext="Podiatrists" value="29-1081">29-1081</option>
+<option data-subtext="Occupational therapists" value="29-1122">29-1122</option>
+<option data-subtext="Physical therapists" value="29-1123">29-1123</option>
+<option data-subtext="Radiation therapists" value="29-1124">29-1124</option>
+<option data-subtext="Recreational therapists" value="29-1125">29-1125</option>
+<option data-subtext="Respiratory therapists" value="29-1126">29-1126</option>
+<option data-subtext="Speech-language pathologists" value="29-1127">29-1127</option>
+<option data-subtext="Exercise physiologists" value="29-1128">29-1128</option>
+<option data-subtext="Therapists, all other" value="29-1129">29-1129</option>
+<option data-subtext="Veterinarians" value="29-1131">29-1131</option>
+<option data-subtext="Registered nurses" value="29-1141">29-1141</option>
+<option data-subtext="Nurse anesthetists" value="29-1151">29-1151</option>
+<option data-subtext="Nurse midwives" value="29-1161">29-1161</option>
+<option data-subtext="Nurse practitioners" value="29-1171">29-1171</option>
+<option data-subtext="Audiologists" value="29-1181">29-1181</option>
+<option data-subtext="Anesthesiologists" value="29-1211">29-1211</option>
+<option data-subtext="Family medicine physicians" value="29-1215">29-1215</option>
+<option data-subtext="General internal medicine physicians" value="29-1216">29-1216</option>
+<option data-subtext="Obstetricians and gynecologists" value="29-1218">29-1218</option>
+<option data-subtext="Pediatricians, general" value="29-1221">29-1221</option>
+<option data-subtext="Psychiatrists" value="29-1223">29-1223</option>
+<option data-subtext="Physicians, all other; and ophthalmologists, except pediatric" value="29-1228">29-1228</option>
+<option data-subtext="Surgeons, except ophthalmologists" value="29-1248">29-1248</option>
+<option data-subtext="Dental hygienists" value="29-1292">29-1292</option>
+<option data-subtext="Acupuncturists and healthcare diagnosing or treating practitioners, all other" value="29-1298">29-1298</option>
+<option data-subtext="Cardiovascular technologists and technicians" value="29-2031">29-2031</option>
+<option data-subtext="Diagnostic medical sonographers" value="29-2032">29-2032</option>
+<option data-subtext="Nuclear medicine technologists" value="29-2033">29-2033</option>
+<option data-subtext="Radiologic technologists and technicians" value="29-2034">29-2034</option>
+<option data-subtext="Magnetic resonance imaging technologists" value="29-2035">29-2035</option>
+<option data-subtext="Dietetic technicians" value="29-2051">29-2051</option>
+<option data-subtext="Pharmacy technicians" value="29-2052">29-2052</option>
+<option data-subtext="Psychiatric technicians" value="29-2053">29-2053</option>
+<option data-subtext="Surgical technologists" value="29-2055">29-2055</option>
+<option data-subtext="Veterinary technologists and technicians" value="29-2056">29-2056</option>
+<option data-subtext="Ophthalmic medical technicians" value="29-2057">29-2057</option>
+<option data-subtext="Licensed practical and licensed vocational nurses" value="29-2061">29-2061</option>
+<option data-subtext="Opticians, dispensing" value="29-2081">29-2081</option>
+<option data-subtext="Orthotists and prosthetists" value="29-2091">29-2091</option>
+<option data-subtext="Hearing aid specialists" value="29-2092">29-2092</option>
+<option data-subtext="Medical dosimetrists, medical records specialists, and health technologists and technicians, all other" value="29-2098">29-2098</option>
+<option data-subtext="Athletic trainers" value="29-9091">29-9091</option>
+<option data-subtext="Genetic counselors" value="29-9092">29-9092</option>
+<option data-subtext="Health information technologists, medical registrars, surgical assistants, and healthcare practitioners and technical workers, all other" value="29-9098">29-9098</option>
+<option data-subtext="Nursing assistants" value="31-1131">31-1131</option>
+<option data-subtext="Orderlies" value="31-1132">31-1132</option>
+<option data-subtext="Psychiatric aides" value="31-1133">31-1133</option>
+<option data-subtext="Occupational therapy assistants" value="31-2011">31-2011</option>
+<option data-subtext="Occupational therapy aides" value="31-2012">31-2012</option>
+<option data-subtext="Physical therapist assistants" value="31-2021">31-2021</option>
+<option data-subtext="Physical therapist aides" value="31-2022">31-2022</option>
+<option data-subtext="Massage therapists" value="31-9011">31-9011</option>
+<option data-subtext="Dental assistants" value="31-9091">31-9091</option>
+<option data-subtext="Medical assistants" value="31-9092">31-9092</option>
+<option data-subtext="Medical equipment preparers" value="31-9093">31-9093</option>
+<option data-subtext="Medical transcriptionists" value="31-9094">31-9094</option>
+<option data-subtext="Pharmacy aides" value="31-9095">31-9095</option>
+<option data-subtext="Veterinary assistants and laboratory animal caretakers" value="31-9096">31-9096</option>
+<option data-subtext="Phlebotomists" value="31-9097">31-9097</option>
+<option data-subtext="Healthcare support workers, all other" value="31-9099">31-9099</option>
+<option data-subtext="First-line supervisors of correctional officers" value="33-1011">33-1011</option>
+<option data-subtext="First-line supervisors of police and detectives" value="33-1012">33-1012</option>
+<option data-subtext="First-line supervisors of firefighting and prevention workers" value="33-1021">33-1021</option>
+<option data-subtext="Firefighters" value="33-2011">33-2011</option>
+<option data-subtext="Fire inspectors and investigators" value="33-2021">33-2021</option>
+<option data-subtext="Forest fire inspectors and prevention specialists" value="33-2022">33-2022</option>
+<option data-subtext="Bailiffs" value="33-3011">33-3011</option>
+<option data-subtext="Correctional officers and jailers" value="33-3012">33-3012</option>
+<option data-subtext="Detectives and criminal investigators" value="33-3021">33-3021</option>
+<option data-subtext="Fish and game wardens" value="33-3031">33-3031</option>
+<option data-subtext="Parking enforcement workers" value="33-3041">33-3041</option>
+<option data-subtext="Police and sheriff's patrol officers" value="33-3051">33-3051</option>
+<option data-subtext="Transit and railroad police" value="33-3052">33-3052</option>
+<option data-subtext="Animal control workers" value="33-9011">33-9011</option>
+<option data-subtext="Private detectives and investigators" value="33-9021">33-9021</option>
+<option data-subtext="Gambling surveillance officers and gambling investigators" value="33-9031">33-9031</option>
+<option data-subtext="Security guards" value="33-9032">33-9032</option>
+<option data-subtext="Crossing guards and flaggers" value="33-9091">33-9091</option>
+<option data-subtext="Lifeguards, ski patrol, and other recreational protective service workers" value="33-9092">33-9092</option>
+<option data-subtext="Transportation security screeners" value="33-9093">33-9093</option>
+<option data-subtext="School bus monitors and protective service workers, all other" value="33-9098">33-9098</option>
+<option data-subtext="Chefs and head cooks" value="35-1011">35-1011</option>
+<option data-subtext="First-line supervisors of food preparation and serving workers" value="35-1012">35-1012</option>
+<option data-subtext="Cooks, fast food" value="35-2011">35-2011</option>
+<option data-subtext="Cooks, institution and cafeteria" value="35-2012">35-2012</option>
+<option data-subtext="Cooks, private household" value="35-2013">35-2013</option>
+<option data-subtext="Cooks, restaurant" value="35-2014">35-2014</option>
+<option data-subtext="Cooks, short order" value="35-2015">35-2015</option>
+<option data-subtext="Cooks, all other" value="35-2019">35-2019</option>
+<option data-subtext="Food preparation workers" value="35-2021">35-2021</option>
+<option data-subtext="Bartenders" value="35-3011">35-3011</option>
+<option data-subtext="Fast food and counter workers" value="35-3023">35-3023</option>
+<option data-subtext="Waiters and waitresses" value="35-3031">35-3031</option>
+<option data-subtext="Food servers, nonrestaurant" value="35-3041">35-3041</option>
+<option data-subtext="Dining room and cafeteria attendants and bartender helpers" value="35-9011">35-9011</option>
+<option data-subtext="Dishwashers" value="35-9021">35-9021</option>
+<option data-subtext="Hosts and hostesses, restaurant, lounge, and coffee shop" value="35-9031">35-9031</option>
+<option data-subtext="Food preparation and serving related workers, all other" value="35-9099">35-9099</option>
+<option data-subtext="First-line supervisors of housekeeping and janitorial workers" value="37-1011">37-1011</option>
+<option data-subtext="First-line supervisors of landscaping, lawn service, and groundskeeping workers" value="37-1012">37-1012</option>
+<option data-subtext="Janitors and cleaners, except maids and housekeeping cleaners" value="37-2011">37-2011</option>
+<option data-subtext="Maids and housekeeping cleaners" value="37-2012">37-2012</option>
+<option data-subtext="Building cleaning workers, all other" value="37-2019">37-2019</option>
+<option data-subtext="Pest control workers" value="37-2021">37-2021</option>
+<option data-subtext="Landscaping and groundskeeping workers" value="37-3011">37-3011</option>
+<option data-subtext="Pesticide handlers, sprayers, and applicators, vegetation" value="37-3012">37-3012</option>
+<option data-subtext="Tree trimmers and pruners" value="37-3013">37-3013</option>
+<option data-subtext="Grounds maintenance workers, all other" value="37-3019">37-3019</option>
+<option data-subtext="First-line supervisors of gambling services workers" value="39-1013">39-1013</option>
+<option data-subtext="First-line supervisors of personal service and entertainment and recreation workers, except gambling services" value="39-1098">39-1098</option>
+<option data-subtext="Animal trainers" value="39-2011">39-2011</option>
+<option data-subtext="Animal caretakers" value="39-2021">39-2021</option>
+<option data-subtext="Gambling dealers" value="39-3011">39-3011</option>
+<option data-subtext="Gambling and sports book writers and runners" value="39-3012">39-3012</option>
+<option data-subtext="Gambling service workers, all other" value="39-3019">39-3019</option>
+<option data-subtext="Motion picture projectionists" value="39-3021">39-3021</option>
+<option data-subtext="Ushers, lobby attendants, and ticket takers" value="39-3031">39-3031</option>
+<option data-subtext="Amusement and recreation attendants" value="39-3091">39-3091</option>
+<option data-subtext="Costume attendants" value="39-3092">39-3092</option>
+<option data-subtext="Locker room, coatroom, and dressing room attendants" value="39-3093">39-3093</option>
+<option data-subtext="Entertainment attendants and related workers, all other" value="39-3099">39-3099</option>
+<option data-subtext="Embalmers" value="39-4011">39-4011</option>
+<option data-subtext="Funeral attendants" value="39-4021">39-4021</option>
+<option data-subtext="Morticians, undertakers, and funeral arrangers" value="39-4031">39-4031</option>
+<option data-subtext="Barbers" value="39-5011">39-5011</option>
+<option data-subtext="Hairdressers, hairstylists, and cosmetologists" value="39-5012">39-5012</option>
+<option data-subtext="Makeup artists, theatrical and performance" value="39-5091">39-5091</option>
+<option data-subtext="Manicurists and pedicurists" value="39-5092">39-5092</option>
+<option data-subtext="Shampooers" value="39-5093">39-5093</option>
+<option data-subtext="Skincare specialists" value="39-5094">39-5094</option>
+<option data-subtext="Baggage porters and bellhops" value="39-6011">39-6011</option>
+<option data-subtext="Concierges" value="39-6012">39-6012</option>
+<option data-subtext="Childcare workers" value="39-9011">39-9011</option>
+<option data-subtext="Exercise trainers and group fitness instructors" value="39-9031">39-9031</option>
+<option data-subtext="Recreation workers" value="39-9032">39-9032</option>
+<option data-subtext="Residential advisors" value="39-9041">39-9041</option>
+<option data-subtext="Crematory operators and personal care and service workers, all other" value="39-9098">39-9098</option>
+<option data-subtext="First-line supervisors of retail sales workers" value="41-1011">41-1011</option>
+<option data-subtext="First-line supervisors of non-retail sales workers" value="41-1012">41-1012</option>
+<option data-subtext="Cashiers" value="41-2011">41-2011</option>
+<option data-subtext="Gambling change persons and booth cashiers" value="41-2012">41-2012</option>
+<option data-subtext="Counter and rental clerks" value="41-2021">41-2021</option>
+<option data-subtext="Parts salespersons" value="41-2022">41-2022</option>
+<option data-subtext="Retail salespersons" value="41-2031">41-2031</option>
+<option data-subtext="Advertising sales agents" value="41-3011">41-3011</option>
+<option data-subtext="Insurance sales agents" value="41-3021">41-3021</option>
+<option data-subtext="Securities, commodities, and financial services sales agents" value="41-3031">41-3031</option>
+<option data-subtext="Travel agents" value="41-3041">41-3041</option>
+<option data-subtext="Sales representatives of services, except advertising, insurance, financial services, and travel" value="41-3091">41-3091</option>
+<option data-subtext="Sales representatives, wholesale and manufacturing, technical and scientific products" value="41-4011">41-4011</option>
+<option data-subtext="Sales representatives, wholesale and manufacturing, except technical and scientific products" value="41-4012">41-4012</option>
+<option data-subtext="Demonstrators and product promoters" value="41-9011">41-9011</option>
+<option data-subtext="Models" value="41-9012">41-9012</option>
+<option data-subtext="Real estate brokers" value="41-9021">41-9021</option>
+<option data-subtext="Real estate sales agents" value="41-9022">41-9022</option>
+<option data-subtext="Sales engineers" value="41-9031">41-9031</option>
+<option data-subtext="Telemarketers" value="41-9041">41-9041</option>
+<option data-subtext="Door-to-door sales workers, news and street vendors, and related workers" value="41-9091">41-9091</option>
+<option data-subtext="Sales and related workers, all other" value="41-9099">41-9099</option>
+<option data-subtext="First-line supervisors of office and administrative support workers" value="43-1011">43-1011</option>
+<option data-subtext="Switchboard operators, including answering service" value="43-2011">43-2011</option>
+<option data-subtext="Telephone operators" value="43-2021">43-2021</option>
+<option data-subtext="Communications equipment operators, all other" value="43-2099">43-2099</option>
+<option data-subtext="Bill and account collectors" value="43-3011">43-3011</option>
+<option data-subtext="Billing and posting clerks" value="43-3021">43-3021</option>
+<option data-subtext="Bookkeeping, accounting, and auditing clerks" value="43-3031">43-3031</option>
+<option data-subtext="Gambling cage workers" value="43-3041">43-3041</option>
+<option data-subtext="Payroll and timekeeping clerks" value="43-3051">43-3051</option>
+<option data-subtext="Procurement clerks" value="43-3061">43-3061</option>
+<option data-subtext="Tellers" value="43-3071">43-3071</option>
+<option data-subtext="Financial clerks, all other" value="43-3099">43-3099</option>
+<option data-subtext="Brokerage clerks" value="43-4011">43-4011</option>
+<option data-subtext="Correspondence clerks" value="43-4021">43-4021</option>
+<option data-subtext="Court, municipal, and license clerks" value="43-4031">43-4031</option>
+<option data-subtext="Credit authorizers, checkers, and clerks" value="43-4041">43-4041</option>
+<option data-subtext="Customer service representatives" value="43-4051">43-4051</option>
+<option data-subtext="Eligibility interviewers, government programs" value="43-4061">43-4061</option>
+<option data-subtext="File clerks" value="43-4071">43-4071</option>
+<option data-subtext="Hotel, motel, and resort desk clerks" value="43-4081">43-4081</option>
+<option data-subtext="Interviewers, except eligibility and loan" value="43-4111">43-4111</option>
+<option data-subtext="Library assistants, clerical" value="43-4121">43-4121</option>
+<option data-subtext="Loan interviewers and clerks" value="43-4131">43-4131</option>
+<option data-subtext="New accounts clerks" value="43-4141">43-4141</option>
+<option data-subtext="Order clerks" value="43-4151">43-4151</option>
+<option data-subtext="Human resources assistants, except payroll and timekeeping" value="43-4161">43-4161</option>
+<option data-subtext="Receptionists and information clerks" value="43-4171">43-4171</option>
+<option data-subtext="Reservation and transportation ticket agents and travel clerks" value="43-4181">43-4181</option>
+<option data-subtext="Information and record clerks, all other" value="43-4199">43-4199</option>
+<option data-subtext="Cargo and freight agents" value="43-5011">43-5011</option>
+<option data-subtext="Couriers and messengers" value="43-5021">43-5021</option>
+<option data-subtext="Public safety telecommunicators" value="43-5031">43-5031</option>
+<option data-subtext="Dispatchers, except police, fire, and ambulance" value="43-5032">43-5032</option>
+<option data-subtext="Meter readers, utilities" value="43-5041">43-5041</option>
+<option data-subtext="Postal service clerks" value="43-5051">43-5051</option>
+<option data-subtext="Postal service mail carriers" value="43-5052">43-5052</option>
+<option data-subtext="Postal service mail sorters, processors, and processing machine operators" value="43-5053">43-5053</option>
+<option data-subtext="Production, planning, and expediting clerks" value="43-5061">43-5061</option>
+<option data-subtext="Shipping, receiving, and inventory clerks" value="43-5071">43-5071</option>
+<option data-subtext="Weighers, measurers, checkers, and samplers, recordkeeping" value="43-5111">43-5111</option>
+<option data-subtext="Executive secretaries and executive administrative assistants" value="43-6011">43-6011</option>
+<option data-subtext="Legal secretaries and administrative assistants" value="43-6012">43-6012</option>
+<option data-subtext="Medical secretaries and administrative assistants" value="43-6013">43-6013</option>
+<option data-subtext="Secretaries and administrative assistants, except legal, medical, and executive" value="43-6014">43-6014</option>
+<option data-subtext="Data entry keyers" value="43-9021">43-9021</option>
+<option data-subtext="Word processors and typists" value="43-9022">43-9022</option>
+<option data-subtext="Desktop publishers" value="43-9031">43-9031</option>
+<option data-subtext="Insurance claims and policy processing clerks" value="43-9041">43-9041</option>
+<option data-subtext="Mail clerks and mail machine operators, except postal service" value="43-9051">43-9051</option>
+<option data-subtext="Office clerks, general" value="43-9061">43-9061</option>
+<option data-subtext="Office machine operators, except computer" value="43-9071">43-9071</option>
+<option data-subtext="Proofreaders and copy markers" value="43-9081">43-9081</option>
+<option data-subtext="Statistical assistants" value="43-9111">43-9111</option>
+<option data-subtext="Office and administrative support workers, all other" value="43-9199">43-9199</option>
+<option data-subtext="First-line supervisors of farming, fishing, and forestry workers" value="45-1011">45-1011</option>
+<option data-subtext="Agricultural inspectors" value="45-2011">45-2011</option>
+<option data-subtext="Animal breeders" value="45-2021">45-2021</option>
+<option data-subtext="Graders and sorters, agricultural products" value="45-2041">45-2041</option>
+<option data-subtext="Agricultural equipment operators" value="45-2091">45-2091</option>
+<option data-subtext="Farmworkers and laborers, crop, nursery, and greenhouse" value="45-2092">45-2092</option>
+<option data-subtext="Farmworkers, farm, ranch, and aquacultural animals" value="45-2093">45-2093</option>
+<option data-subtext="Agricultural workers, all other" value="45-2099">45-2099</option>
+<option data-subtext="Fishing and hunting workers" value="45-3031">45-3031</option>
+<option data-subtext="Forest and conservation workers" value="45-4011">45-4011</option>
+<option data-subtext="Fallers" value="45-4021">45-4021</option>
+<option data-subtext="Logging equipment operators" value="45-4022">45-4022</option>
+<option data-subtext="Log graders and scalers" value="45-4023">45-4023</option>
+<option data-subtext="Logging workers, all other" value="45-4029">45-4029</option>
+<option data-subtext="First-line supervisors of construction trades and extraction workers" value="47-1011">47-1011</option>
+<option data-subtext="Boilermakers" value="47-2011">47-2011</option>
+<option data-subtext="Brickmasons and blockmasons" value="47-2021">47-2021</option>
+<option data-subtext="Stonemasons" value="47-2022">47-2022</option>
+<option data-subtext="Carpenters" value="47-2031">47-2031</option>
+<option data-subtext="Carpet installers" value="47-2041">47-2041</option>
+<option data-subtext="Floor layers, except carpet, wood, and hard tiles" value="47-2042">47-2042</option>
+<option data-subtext="Floor sanders and finishers" value="47-2043">47-2043</option>
+<option data-subtext="Tile and stone setters" value="47-2044">47-2044</option>
+<option data-subtext="Cement masons and concrete finishers" value="47-2051">47-2051</option>
+<option data-subtext="Terrazzo workers and finishers" value="47-2053">47-2053</option>
+<option data-subtext="Construction laborers" value="47-2061">47-2061</option>
+<option data-subtext="Paving, surfacing, and tamping equipment operators" value="47-2071">47-2071</option>
+<option data-subtext="Pile driver operators" value="47-2072">47-2072</option>
+<option data-subtext="Operating engineers and other construction equipment operators" value="47-2073">47-2073</option>
+<option data-subtext="Drywall and ceiling tile installers" value="47-2081">47-2081</option>
+<option data-subtext="Tapers" value="47-2082">47-2082</option>
+<option data-subtext="Electricians" value="47-2111">47-2111</option>
+<option data-subtext="Glaziers" value="47-2121">47-2121</option>
+<option data-subtext="Insulation workers, floor, ceiling, and wall" value="47-2131">47-2131</option>
+<option data-subtext="Insulation workers, mechanical" value="47-2132">47-2132</option>
+<option data-subtext="Painters, construction and maintenance" value="47-2141">47-2141</option>
+<option data-subtext="Paperhangers" value="47-2142">47-2142</option>
+<option data-subtext="Pipelayers" value="47-2151">47-2151</option>
+<option data-subtext="Plumbers, pipefitters, and steamfitters" value="47-2152">47-2152</option>
+<option data-subtext="Plasterers and stucco masons" value="47-2161">47-2161</option>
+<option data-subtext="Reinforcing iron and rebar workers" value="47-2171">47-2171</option>
+<option data-subtext="Roofers" value="47-2181">47-2181</option>
+<option data-subtext="Sheet metal workers" value="47-2211">47-2211</option>
+<option data-subtext="Structural iron and steel workers" value="47-2221">47-2221</option>
+<option data-subtext="Solar photovoltaic installers" value="47-2231">47-2231</option>
+<option data-subtext="Helpers--brickmasons, blockmasons, stonemasons, and tile and marble setters" value="47-3011">47-3011</option>
+<option data-subtext="Helpers--carpenters" value="47-3012">47-3012</option>
+<option data-subtext="Helpers--electricians" value="47-3013">47-3013</option>
+<option data-subtext="Helpers--painters, paperhangers, plasterers, and stucco masons" value="47-3014">47-3014</option>
+<option data-subtext="Helpers--pipelayers, plumbers, pipefitters, and steamfitters" value="47-3015">47-3015</option>
+<option data-subtext="Helpers--roofers" value="47-3016">47-3016</option>
+<option data-subtext="Helpers, construction trades, all other" value="47-3019">47-3019</option>
+<option data-subtext="Construction and building inspectors" value="47-4011">47-4011</option>
+<option data-subtext="Elevator and escalator installers and repairers" value="47-4021">47-4021</option>
+<option data-subtext="Fence erectors" value="47-4031">47-4031</option>
+<option data-subtext="Hazardous materials removal workers" value="47-4041">47-4041</option>
+<option data-subtext="Highway maintenance workers" value="47-4051">47-4051</option>
+<option data-subtext="Rail-track laying and maintenance equipment operators" value="47-4061">47-4061</option>
+<option data-subtext="Septic tank servicers and sewer pipe cleaners" value="47-4071">47-4071</option>
+<option data-subtext="Derrick operators, oil and gas" value="47-5011">47-5011</option>
+<option data-subtext="Rotary drill operators, oil and gas" value="47-5012">47-5012</option>
+<option data-subtext="Service unit operators, oil and gas" value="47-5013">47-5013</option>
+<option data-subtext="Excavating and loading machine and dragline operators, surface mining" value="47-5022">47-5022</option>
+<option data-subtext="Continuous mining machine operators" value="47-5041">47-5041</option>
+<option data-subtext="Roof bolters, mining" value="47-5043">47-5043</option>
+<option data-subtext="Loading and moving machine operators, underground mining" value="47-5044">47-5044</option>
+<option data-subtext="Rock splitters, quarry" value="47-5051">47-5051</option>
+<option data-subtext="Roustabouts, oil and gas" value="47-5071">47-5071</option>
+<option data-subtext="Helpers--extraction workers" value="47-5081">47-5081</option>
+<option data-subtext="Earth drillers, except oil and gas; and explosives workers, ordnance handling experts, and blasters" value="47-5097">47-5097</option>
+<option data-subtext="Underground mining machine operators and extraction workers, all other" value="47-5098">47-5098</option>
+<option data-subtext="First-line supervisors of mechanics, installers, and repairers" value="49-1011">49-1011</option>
+<option data-subtext="Computer, automated teller, and office machine repairers" value="49-2011">49-2011</option>
+<option data-subtext="Radio, cellular, and tower equipment installers and repairers" value="49-2021">49-2021</option>
+<option data-subtext="Telecommunications equipment installers and repairers, except line installers" value="49-2022">49-2022</option>
+<option data-subtext="Avionics technicians" value="49-2091">49-2091</option>
+<option data-subtext="Electric motor, power tool, and related repairers" value="49-2092">49-2092</option>
+<option data-subtext="Electrical and electronics installers and repairers, transportation equipment" value="49-2093">49-2093</option>
+<option data-subtext="Electrical and electronics repairers, commercial and industrial equipment" value="49-2094">49-2094</option>
+<option data-subtext="Electrical and electronics repairers, powerhouse, substation, and relay" value="49-2095">49-2095</option>
+<option data-subtext="Electronic equipment installers and repairers, motor vehicles" value="49-2096">49-2096</option>
+<option data-subtext="Audiovisual equipment installers and repairers" value="49-2097">49-2097</option>
+<option data-subtext="Security and fire alarm systems installers" value="49-2098">49-2098</option>
+<option data-subtext="Aircraft mechanics and service technicians" value="49-3011">49-3011</option>
+<option data-subtext="Automotive body and related repairers" value="49-3021">49-3021</option>
+<option data-subtext="Automotive glass installers and repairers" value="49-3022">49-3022</option>
+<option data-subtext="Automotive service technicians and mechanics" value="49-3023">49-3023</option>
+<option data-subtext="Bus and truck mechanics and diesel engine specialists" value="49-3031">49-3031</option>
+<option data-subtext="Farm equipment mechanics and service technicians" value="49-3041">49-3041</option>
+<option data-subtext="Mobile heavy equipment mechanics, except engines" value="49-3042">49-3042</option>
+<option data-subtext="Rail car repairers" value="49-3043">49-3043</option>
+<option data-subtext="Motorboat mechanics and service technicians" value="49-3051">49-3051</option>
+<option data-subtext="Motorcycle mechanics" value="49-3052">49-3052</option>
+<option data-subtext="Outdoor power equipment and other small engine mechanics" value="49-3053">49-3053</option>
+<option data-subtext="Bicycle repairers" value="49-3091">49-3091</option>
+<option data-subtext="Recreational vehicle service technicians" value="49-3092">49-3092</option>
+<option data-subtext="Tire repairers and changers" value="49-3093">49-3093</option>
+<option data-subtext="Mechanical door repairers" value="49-9011">49-9011</option>
+<option data-subtext="Control and valve installers and repairers, except mechanical door" value="49-9012">49-9012</option>
+<option data-subtext="Heating, air conditioning, and refrigeration mechanics and installers" value="49-9021">49-9021</option>
+<option data-subtext="Home appliance repairers" value="49-9031">49-9031</option>
+<option data-subtext="Industrial machinery mechanics" value="49-9041">49-9041</option>
+<option data-subtext="Maintenance workers, machinery" value="49-9043">49-9043</option>
+<option data-subtext="Millwrights" value="49-9044">49-9044</option>
+<option data-subtext="Refractory materials repairers, except brickmasons" value="49-9045">49-9045</option>
+<option data-subtext="Electrical power-line installers and repairers" value="49-9051">49-9051</option>
+<option data-subtext="Telecommunications line installers and repairers" value="49-9052">49-9052</option>
+<option data-subtext="Camera and photographic equipment repairers" value="49-9061">49-9061</option>
+<option data-subtext="Medical equipment repairers" value="49-9062">49-9062</option>
+<option data-subtext="Musical instrument repairers and tuners" value="49-9063">49-9063</option>
+<option data-subtext="Watch and clock repairers" value="49-9064">49-9064</option>
+<option data-subtext="Precision instrument and equipment repairers, all other" value="49-9069">49-9069</option>
+<option data-subtext="Maintenance and repair workers, general" value="49-9071">49-9071</option>
+<option data-subtext="Wind turbine service technicians" value="49-9081">49-9081</option>
+<option data-subtext="Coin, vending, and amusement machine servicers and repairers" value="49-9091">49-9091</option>
+<option data-subtext="Commercial divers" value="49-9092">49-9092</option>
+<option data-subtext="Locksmiths and safe repairers" value="49-9094">49-9094</option>
+<option data-subtext="Manufactured building and mobile home installers" value="49-9095">49-9095</option>
+<option data-subtext="Riggers" value="49-9096">49-9096</option>
+<option data-subtext="Signal and track switch repairers" value="49-9097">49-9097</option>
+<option data-subtext="Helpers--installation, maintenance, and repair workers" value="49-9098">49-9098</option>
+<option data-subtext="Installation, maintenance, and repair workers, all other" value="49-9099">49-9099</option>
+<option data-subtext="First-line supervisors of production and operating workers" value="51-1011">51-1011</option>
+<option data-subtext="Aircraft structure, surfaces, rigging, and systems assemblers" value="51-2011">51-2011</option>
+<option data-subtext="Coil winders, tapers, and finishers" value="51-2021">51-2021</option>
+<option data-subtext="Electrical, electronic, and electromechanical assemblers, except coil winders, tapers, and finishers" value="51-2028">51-2028</option>
+<option data-subtext="Engine and other machine assemblers" value="51-2031">51-2031</option>
+<option data-subtext="Structural metal fabricators and fitters" value="51-2041">51-2041</option>
+<option data-subtext="Fiberglass laminators and fabricators" value="51-2051">51-2051</option>
+<option data-subtext="Timing device assemblers and adjusters" value="51-2061">51-2061</option>
+<option data-subtext="Bakers" value="51-3011">51-3011</option>
+<option data-subtext="Butchers and meat cutters" value="51-3021">51-3021</option>
+<option data-subtext="Meat, poultry, and fish cutters and trimmers" value="51-3022">51-3022</option>
+<option data-subtext="Slaughterers and meat packers" value="51-3023">51-3023</option>
+<option data-subtext="Food and tobacco roasting, baking, and drying machine operators and tenders" value="51-3091">51-3091</option>
+<option data-subtext="Food batchmakers" value="51-3092">51-3092</option>
+<option data-subtext="Food cooking machine operators and tenders" value="51-3093">51-3093</option>
+<option data-subtext="Food processing workers, all other" value="51-3099">51-3099</option>
+<option data-subtext="Extruding and drawing machine setters, operators, and tenders, metal and plastic" value="51-4021">51-4021</option>
+<option data-subtext="Forging machine setters, operators, and tenders, metal and plastic" value="51-4022">51-4022</option>
+<option data-subtext="Rolling machine setters, operators, and tenders, metal and plastic" value="51-4023">51-4023</option>
+<option data-subtext="Cutting, punching, and press machine setters, operators, and tenders, metal and plastic" value="51-4031">51-4031</option>
+<option data-subtext="Drilling and boring machine tool setters, operators, and tenders, metal and plastic" value="51-4032">51-4032</option>
+<option data-subtext="Grinding, lapping, polishing, and buffing machine tool setters, operators, and tenders, metal and plastic" value="51-4033">51-4033</option>
+<option data-subtext="Lathe and turning machine tool setters, operators, and tenders, metal and plastic" value="51-4034">51-4034</option>
+<option data-subtext="Milling and planing machine setters, operators, and tenders, metal and plastic" value="51-4035">51-4035</option>
+<option data-subtext="Machinists" value="51-4041">51-4041</option>
+<option data-subtext="Metal-refining furnace operators and tenders" value="51-4051">51-4051</option>
+<option data-subtext="Pourers and casters, metal" value="51-4052">51-4052</option>
+<option data-subtext="Model makers, metal and plastic" value="51-4061">51-4061</option>
+<option data-subtext="Patternmakers, metal and plastic" value="51-4062">51-4062</option>
+<option data-subtext="Foundry mold and coremakers" value="51-4071">51-4071</option>
+<option data-subtext="Molding, coremaking, and casting machine setters, operators, and tenders, metal and plastic" value="51-4072">51-4072</option>
+<option data-subtext="Multiple machine tool setters, operators, and tenders, metal and plastic" value="51-4081">51-4081</option>
+<option data-subtext="Tool and die makers" value="51-4111">51-4111</option>
+<option data-subtext="Welders, cutters, solderers, and brazers" value="51-4121">51-4121</option>
+<option data-subtext="Welding, soldering, and brazing machine setters, operators, and tenders" value="51-4122">51-4122</option>
+<option data-subtext="Heat treating equipment setters, operators, and tenders, metal and plastic" value="51-4191">51-4191</option>
+<option data-subtext="Layout workers, metal and plastic" value="51-4192">51-4192</option>
+<option data-subtext="Plating machine setters, operators, and tenders, metal and plastic" value="51-4193">51-4193</option>
+<option data-subtext="Tool grinders, filers, and sharpeners" value="51-4194">51-4194</option>
+<option data-subtext="Metal workers and plastic workers, all other" value="51-4199">51-4199</option>
+<option data-subtext="Prepress technicians and workers" value="51-5111">51-5111</option>
+<option data-subtext="Printing press operators" value="51-5112">51-5112</option>
+<option data-subtext="Print binding and finishing workers" value="51-5113">51-5113</option>
+<option data-subtext="Laundry and dry-cleaning workers" value="51-6011">51-6011</option>
+<option data-subtext="Pressers, textile, garment, and related materials" value="51-6021">51-6021</option>
+<option data-subtext="Sewing machine operators" value="51-6031">51-6031</option>
+<option data-subtext="Shoe and leather workers and repairers" value="51-6041">51-6041</option>
+<option data-subtext="Shoe machine operators and tenders" value="51-6042">51-6042</option>
+<option data-subtext="Sewers, hand" value="51-6051">51-6051</option>
+<option data-subtext="Tailors, dressmakers, and custom sewers" value="51-6052">51-6052</option>
+<option data-subtext="Textile bleaching and dyeing machine operators and tenders" value="51-6061">51-6061</option>
+<option data-subtext="Textile cutting machine setters, operators, and tenders" value="51-6062">51-6062</option>
+<option data-subtext="Textile knitting and weaving machine setters, operators, and tenders" value="51-6063">51-6063</option>
+<option data-subtext="Textile winding, twisting, and drawing out machine setters, operators, and tenders" value="51-6064">51-6064</option>
+<option data-subtext="Extruding and forming machine setters, operators, and tenders, synthetic and glass fibers" value="51-6091">51-6091</option>
+<option data-subtext="Fabric and apparel patternmakers" value="51-6092">51-6092</option>
+<option data-subtext="Upholsterers" value="51-6093">51-6093</option>
+<option data-subtext="Textile, apparel, and furnishings workers, all other" value="51-6099">51-6099</option>
+<option data-subtext="Cabinetmakers and bench carpenters" value="51-7011">51-7011</option>
+<option data-subtext="Furniture finishers" value="51-7021">51-7021</option>
+<option data-subtext="Model makers, wood" value="51-7031">51-7031</option>
+<option data-subtext="Patternmakers, wood" value="51-7032">51-7032</option>
+<option data-subtext="Sawing machine setters, operators, and tenders, wood" value="51-7041">51-7041</option>
+<option data-subtext="Woodworking machine setters, operators, and tenders, except sawing" value="51-7042">51-7042</option>
+<option data-subtext="Woodworkers, all other" value="51-7099">51-7099</option>
+<option data-subtext="Nuclear power reactor operators" value="51-8011">51-8011</option>
+<option data-subtext="Power distributors and dispatchers" value="51-8012">51-8012</option>
+<option data-subtext="Power plant operators" value="51-8013">51-8013</option>
+<option data-subtext="Stationary engineers and boiler operators" value="51-8021">51-8021</option>
+<option data-subtext="Water and wastewater treatment plant and system operators" value="51-8031">51-8031</option>
+<option data-subtext="Chemical plant and system operators" value="51-8091">51-8091</option>
+<option data-subtext="Gas plant operators" value="51-8092">51-8092</option>
+<option data-subtext="Petroleum pump system operators, refinery operators, and gaugers" value="51-8093">51-8093</option>
+<option data-subtext="Plant and system operators, all other" value="51-8099">51-8099</option>
+<option data-subtext="Chemical equipment operators and tenders" value="51-9011">51-9011</option>
+<option data-subtext="Separating, filtering, clarifying, precipitating, and still machine setters, operators, and tenders" value="51-9012">51-9012</option>
+<option data-subtext="Crushing, grinding, and polishing machine setters, operators, and tenders" value="51-9021">51-9021</option>
+<option data-subtext="Grinding and polishing workers, hand" value="51-9022">51-9022</option>
+<option data-subtext="Mixing and blending machine setters, operators, and tenders" value="51-9023">51-9023</option>
+<option data-subtext="Cutters and trimmers, hand" value="51-9031">51-9031</option>
+<option data-subtext="Cutting and slicing machine setters, operators, and tenders" value="51-9032">51-9032</option>
+<option data-subtext="Extruding, forming, pressing, and compacting machine setters, operators, and tenders" value="51-9041">51-9041</option>
+<option data-subtext="Furnace, kiln, oven, drier, and kettle operators and tenders" value="51-9051">51-9051</option>
+<option data-subtext="Inspectors, testers, sorters, samplers, and weighers" value="51-9061">51-9061</option>
+<option data-subtext="Jewelers and precious stone and metal workers" value="51-9071">51-9071</option>
+<option data-subtext="Dental laboratory technicians" value="51-9081">51-9081</option>
+<option data-subtext="Medical appliance technicians" value="51-9082">51-9082</option>
+<option data-subtext="Ophthalmic laboratory technicians" value="51-9083">51-9083</option>
+<option data-subtext="Packaging and filling machine operators and tenders" value="51-9111">51-9111</option>
+<option data-subtext="Painting, coating, and decorating workers" value="51-9123">51-9123</option>
+<option data-subtext="Coating, painting, and spraying machine setters, operators, and tenders" value="51-9124">51-9124</option>
+<option data-subtext="Semiconductor processing technicians" value="51-9141">51-9141</option>
+<option data-subtext="Photographic process workers and processing machine operators" value="51-9151">51-9151</option>
+<option data-subtext="Computer numerically controlled tool operators" value="51-9161">51-9161</option>
+<option data-subtext="Computer numerically controlled tool programmers" value="51-9162">51-9162</option>
+<option data-subtext="Adhesive bonding machine operators and tenders" value="51-9191">51-9191</option>
+<option data-subtext="Cleaning, washing, and metal pickling equipment operators and tenders" value="51-9192">51-9192</option>
+<option data-subtext="Cooling and freezing equipment operators and tenders" value="51-9193">51-9193</option>
+<option data-subtext="Etchers and engravers" value="51-9194">51-9194</option>
+<option data-subtext="Molders, shapers, and casters, except metal and plastic" value="51-9195">51-9195</option>
+<option data-subtext="Paper goods machine setters, operators, and tenders" value="51-9196">51-9196</option>
+<option data-subtext="Tire builders" value="51-9197">51-9197</option>
+<option data-subtext="Helpers--production workers" value="51-9198">51-9198</option>
+<option data-subtext="Production workers, all other" value="51-9199">51-9199</option>
+<option data-subtext="Aircraft cargo handling supervisors" value="53-1041">53-1041</option>
+<option data-subtext="First-line supervisors of transportation and material-moving workers, except aircraft cargo handling supervisors" value="53-1047">53-1047</option>
+<option data-subtext="Airline pilots, copilots, and flight engineers" value="53-2011">53-2011</option>
+<option data-subtext="Commercial pilots" value="53-2012">53-2012</option>
+<option data-subtext="Air traffic controllers" value="53-2021">53-2021</option>
+<option data-subtext="Airfield operations specialists" value="53-2022">53-2022</option>
+<option data-subtext="Flight attendants" value="53-2031">53-2031</option>
+<option data-subtext="Ambulance drivers and attendants, except emergency medical technicians" value="53-3011">53-3011</option>
+<option data-subtext="Driver/sales workers" value="53-3031">53-3031</option>
+<option data-subtext="Heavy and tractor-trailer truck drivers" value="53-3032">53-3032</option>
+<option data-subtext="Light truck drivers" value="53-3033">53-3033</option>
+<option data-subtext="Bus drivers, transit and intercity" value="53-3052">53-3052</option>
+<option data-subtext="Passenger vehicle drivers, except bus drivers, transit and intercity" value="53-3058">53-3058</option>
+<option data-subtext="Motor vehicle operators, all other" value="53-3099">53-3099</option>
+<option data-subtext="Locomotive engineers" value="53-4011">53-4011</option>
+<option data-subtext="Rail yard engineers, dinkey operators, and hostlers" value="53-4013">53-4013</option>
+<option data-subtext="Railroad brake, signal, and switch operators and locomotive firers" value="53-4022">53-4022</option>
+<option data-subtext="Railroad conductors and yardmasters" value="53-4031">53-4031</option>
+<option data-subtext="Subway and streetcar operators" value="53-4041">53-4041</option>
+<option data-subtext="Rail transportation workers, all other" value="53-4099">53-4099</option>
+<option data-subtext="Sailors and marine oilers" value="53-5011">53-5011</option>
+<option data-subtext="Captains, mates, and pilots of water vessels" value="53-5021">53-5021</option>
+<option data-subtext="Motorboat operators" value="53-5022">53-5022</option>
+<option data-subtext="Ship engineers" value="53-5031">53-5031</option>
+<option data-subtext="Bridge and lock tenders" value="53-6011">53-6011</option>
+<option data-subtext="Parking attendants" value="53-6021">53-6021</option>
+<option data-subtext="Automotive and watercraft service attendants" value="53-6031">53-6031</option>
+<option data-subtext="Traffic technicians" value="53-6041">53-6041</option>
+<option data-subtext="Transportation inspectors" value="53-6051">53-6051</option>
+<option data-subtext="Passenger attendants" value="53-6061">53-6061</option>
+<option data-subtext="Aircraft service attendants and transportation workers, all other" value="53-6098">53-6098</option>
+<option data-subtext="Conveyor operators and tenders" value="53-7011">53-7011</option>
+<option data-subtext="Crane and tower operators" value="53-7021">53-7021</option>
+<option data-subtext="Dredge operators" value="53-7031">53-7031</option>
+<option data-subtext="Hoist and winch operators" value="53-7041">53-7041</option>
+<option data-subtext="Industrial truck and tractor operators" value="53-7051">53-7051</option>
+<option data-subtext="Cleaners of vehicles and equipment" value="53-7061">53-7061</option>
+<option data-subtext="Laborers and freight, stock, and material movers, hand" value="53-7062">53-7062</option>
+<option data-subtext="Machine feeders and offbearers" value="53-7063">53-7063</option>
+<option data-subtext="Packers and packagers, hand" value="53-7064">53-7064</option>
+<option data-subtext="Stockers and order fillers" value="53-7065">53-7065</option>
+<option data-subtext="Gas compressor and gas pumping station operators" value="53-7071">53-7071</option>
+<option data-subtext="Pump operators, except wellhead pumpers" value="53-7072">53-7072</option>
+<option data-subtext="Wellhead pumpers" value="53-7073">53-7073</option>
+<option data-subtext="Refuse and recyclable material collectors" value="53-7081">53-7081</option>
+<option data-subtext="Tank car, truck, and ship loaders" value="53-7121">53-7121</option>
+<option data-subtext="Material moving workers, all other" value="53-7199">53-7199</option>
+</select>
+</div>
+</div>
+<div>
+<div class="input-group">
+<span class="input-group-addon"><b>Crosswalk Industry Groups:<br/><span class="note_style">(Hold ctrl or shift key for <br/> multiple selection)</span></b></span>
+<select class="form-control" id="SOCCrosswalk2IndustryGroup" multiple="multiple" name="SOCCrosswalk2IndustryGroup">
+<!--	<select name="SOCCrosswalk2IndustryGroup"  id="SOCCrosswalk2IndustryGroup"  class="form-control selectpicker" data-size="15"> -->
+<option value="9999">List of Industry Groups Corresponding to the Selected Occupation above</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<br/>
+<div class="col-sm-12" style="font-style: italic;">Reference: <a href="https://www.census.gov/naics/" target="_blank">NAICS Code Description</a>
+					     <a href="metadata/soc_2018_definitions.xlsx">Occupational Descriptions (MS Excel) </a>     
+					<a href="http://www.onetonline.org/find/quick" target="_blank"> Occupation Quick Search by O*NET OnLine</a>
+</div>
+</div>
+</fieldset>
+<br/>
+<fieldset class="hm-fieldset">
+<legend class="hm-legend">Select Company Specifics</legend>
+<div class="hm-property">
+<div class="col-sm-12">
+<div class="form-group">
+<label class="control-label" for="CompanyName"> Company Name or Business Description Keyword:</label>
+<div class="input-group">
+<input class="form-control" id="CompanyName" name="CompanyName" type="text"/>
+<span class="input-group-addon"> (				
+														<label class="radio-inline"><input checked="" name="stype" type="radio" value="c"/>contains</label>
+<label class="radio-inline"><input name="stype" type="radio" value="s"/>begins with</label>
+														) </span>
+</div> </div> </div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="employee_size">Employee Size Class:</label>
+<div class="col-sm-5">
+<select class="form-control" id="employee_size" name="employee_size">
+<option selected="" value="">Any number of employees</option>
+<option value="1-4 emp">1 - 4 employees  </option>
+<option value="5-9 emp">5 - 9 employees</option>
+<option value="10-19 emp">10 - 19 employees</option>
+<option value="20-49 emp">20 - 49 employees</option>
+<option value="50-99 emp">50 - 99 employees</option>
+<option value="100-249 emp">100 - 249 employees</option>
+<option value="250-499 emp">250 - 499 employees</option>
+<option value="500-999 emp">500 - 999 employees</option>
+<option value="1,000-4,999 emp">1000 or more employees</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="company_type">Private/Public:</label>
+<div class="col-sm-5">
+<select class="form-control" id="company_type" name="company_type">
+<option selected="" value="">Any Type</option>
+<option value="Private">Private</option>
+<option value="Federal">Federal</option>
+<option value="State">State</option>
+<option value="County">County</option>
+<option value="Municipal">City/Town</option>
+</select>
+</div>
+</div>
+<br/>
+<input id="naics" name="naics" type="hidden" value=""/>
+<input id="industry_group_search_type" name="industry_group_search_type" type="hidden" value="NAICS"/>
+<input id="FIPS" name="FIPS" type="hidden" value=""/>
+<input id="city" name="city" type="hidden" value=""/>
+<input id="zipcode" name="zipcode" type="hidden" value=""/>
+<div class="form-group">
+<div class="col-sm-10">
+<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+</div>
+</div>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+<div class="col-sm-12">
+<br/>
+<a href="http://www.data-axle.com"><img alt="Data Axle Logo" border="0" height="54px" src="img/data_axle_horizontal_color.png"/></a>
+					Employer information is provided by <a href="http://www.data-axle.com">Data Axle®</a>, Omaha, NE. Copyright © 2022 All Rights Reserved.
+
+				</div>
+</div>
+<div style="margin-top:120px;">
+<footer class="navbar-fixed-bottom hidden-xs" style="height:60px">
+<div class="text-center"><br/>
+<a a="" class="ahrefadmin" href="https://www.google.com/maps/place/301+N+Wilmington+St,+Raleigh,+NC+27601/@35.7845187,-78.6403497,17z/data=!3m1!4b1!4m5!3m4!1s0x89ac5f6bbd60a90b:0x50097ef82aaa58f8!8m2!3d35.7845144!4d-78.638161301">301 N Wilmington St, Raleigh, NC 27601 | <a class="ahrefadmin" href="tel:9197071500">919-707-1500 |</a> <a class="ahrefadmin" href="mailto:lead@nccommerce.com">lead@nccommerce.com</a>
+</a></div>
+<div style="position: absolute; left: 0px; top: 0px;">
+<a href="https://www.nccommerce.com/about-us/divisions-programs/labor-economic-analysis-division">
+<img alt="LEAD Logo" class="center-block img-responsive" height="60" src="/images/NC_Commerce_Logo_Divisions_LaborEconomicAnalysis_White.png" width="150"/></a>
+</div>
+</footer>
+</div>
+
+</body>
+</html>
+
+
