@@ -15,6 +15,8 @@ jobs:
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Log commit information
+        env:
+          TZ: "America/New_York"
         run: |
           TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
           USER="${{ github.actor }}"
