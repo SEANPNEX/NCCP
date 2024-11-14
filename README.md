@@ -32,3 +32,7 @@ Goal: Identify business requiring funds
 - [ ] Interactive map to show data
 
 
+## Dev - Todos
+* - [ ] Implement vue3 datatable from old projects to present the database
+* - [ ] Implement vue3-google-map to mark polygons of counties and create events to show data
+
