@@ -1,4 +1,5 @@
 node_modules
+merged_output.geojson
 .DS_Store
 dist-ssr
 cache
