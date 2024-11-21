@@ -39,3 +39,5 @@ prev:
 
 2024-11-17 05:10:59-SEANPNEX-:white_check_mark:updated notebook
 
+2024-11-21 17:26:35-SEANPNEX-update geoplot demo
+
