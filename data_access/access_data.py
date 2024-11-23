@@ -9,7 +9,7 @@ with open("all_links_full.txt", "r") as file:
     links = [line.strip() for line in file if line.strip()]
 
 # Set rate limit (delay in seconds)
-RATE_LIMIT_DELAY = 1  # Adjust as needed
+RATE_LIMIT_DELAY = 0.1  # Adjust as needed
 
 # Asynchronous function to fetch data and extract table information and coordinates
 async def fetch_data(session, url):
