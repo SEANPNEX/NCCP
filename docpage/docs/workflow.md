@@ -47,3 +47,5 @@ prev:
 
 2024-11-24 21:56:50-SEANPNEX-update business access by county - with patch
 
+2024-11-26 15:52:29-SEANPNEX-update business access with another approach
+
