@@ -7,3 +7,5 @@ cache
 .temp
 *.local
 *.pdf
+*.db
+processed_results.csv

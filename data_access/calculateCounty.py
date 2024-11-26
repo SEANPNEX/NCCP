@@ -1,21 +1,16 @@
-import matplotlib.pyplot as plt
-import geoplot
-import geoplot.crs as gcrs
 import geopandas as gpd
-from shapely.geometry import Point, shape
-from shapely.validation import explain_validity
+from shapely.geometry import Point
 import pandas as pd
-import sqlite3
-from tqdm import tqdm
-import concurrent.futures
+import asyncio
+from tqdm.asyncio import tqdm as async_tqdm
 
-geo_NC = gpd.read_file(
-    "NC_counties.geojson"
-)
+# Load GeoJSON and CSV files
+geo_NC = gpd.read_file("NC_counties.geojson")
 geo_nearby = gpd.read_file("merged_output.geojson")
 bus_df = pd.read_csv("extracted_data_with_coordinates.csv")
 
-def find_county(lon, lat):
+# Function to find the county
+async def find_county(lon, lat):
     point = Point(lon, lat)
     for _, county in geo_NC.iterrows():
         if county['geometry'].contains(point):
@@ -25,27 +20,31 @@ def find_county(lon, lat):
             return f"NOT_NC:{county.get('NAME')}"
     return "NOT_FOUND"
 
-def process_row(row):
+# Process a single row
+async def process_row(row):
     company = row.to_dict()
     lat = company["Latitude"]
     lon = company["Longitude"]
-    company.update({"County": find_county(lon, lat)})
+    company.update({"County": await find_county(lon, lat)})
     return company
 
-# Main processing function
-def process_dataframe_async(df, geo_NC, geo_nearby):
+# Process DataFrame asynchronously
+async def process_dataframe_async(df):
     results = []
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        # Wrap rows with tqdm for progress bar
-        futures = [executor.submit(process_row, row) for _, row in df.iterrows()]
-        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures)):
-            results.append(future.result())
+    # Wrap rows with async tqdm for progress bar
+    tasks = [process_row(row) for _, row in df.iterrows()]
+    for task in async_tqdm(asyncio.as_completed(tasks), total=len(tasks)):
+        results.append(await task)
     return pd.DataFrame(results)
 
-# Example usage
-# Replace `bus_df`, `geo_NC`, and `geo_nearby` with your actual data
-processed_df = process_dataframe_async(bus_df, geo_NC, geo_nearby)
+# Main coroutine
+async def main():
+    # Process the DataFrame
+    processed_df = await process_dataframe_async(bus_df)
 
-# Display or save the result
-processed_df.to_csv("processed_results.csv", index=False)
-print(processed_df.head())
+    # Save the result
+    processed_df.to_csv("processed_results.csv", index=False)
+    print(processed_df.head())
+
+# Run the main coroutine
+asyncio.run(main())

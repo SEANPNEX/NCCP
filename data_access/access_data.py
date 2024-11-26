@@ -49,9 +49,15 @@ async def fetch_data(session, url):
                 return data_dict
             else:
                 print(f"Failed to fetch {url} with status {response.status}")
+                with open("failed_address.txt",'a') as f:
+                    f.write(url)
+                    f.write("\n")
                 return None
     except Exception as e:
         print(f"Error fetching {url}: {e}")
+        with open("failed_address.txt",'a') as f:
+            f.write(url)
+            f.write("\n")
         return None
 
 # Main asynchronous function to handle all requests and compile results with progress bar

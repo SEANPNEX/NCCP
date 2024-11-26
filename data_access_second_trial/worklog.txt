@@ -1,0 +1,262 @@
+[2024-11-26 11:49:59.423336] NAICS: 4541, Page: 1, Links Extracted: 0
+[2024-11-26 11:49:59.431740] Completed NAICS: 4541. Total Links: 0
+[2024-11-26 11:50:05.657836] NAICS: 4512, Page: 1, Links Extracted: 0
+[2024-11-26 11:50:05.665916] Completed NAICS: 4512. Total Links: 0
+[2024-11-26 11:50:11.877490] NAICS: 3211, Page: 1, Links Extracted: 62
+[2024-11-26 11:50:11.883454] Completed NAICS: 3211. Total Links: 62
+[2024-11-26 11:50:18.039678] NAICS: 5612, Page: 1, Links Extracted: 45
+[2024-11-26 11:50:18.046096] Completed NAICS: 5612. Total Links: 45
+[2024-11-26 11:50:25.131263] NAICS: 5191, Page: 1, Links Extracted: 0
+[2024-11-26 11:50:25.137246] Completed NAICS: 5191. Total Links: 0
+[2024-11-26 11:50:31.290558] NAICS: 6232, Page: 1, Links Extracted: 26
+[2024-11-26 11:50:31.296538] Completed NAICS: 6232. Total Links: 26
+[2024-11-26 11:51:21.124811] NAICS: 4541, Page: 1, Links Extracted: 0
+[2024-11-26 11:51:21.133460] Completed NAICS: 4541. Total Links: 0
+[2024-11-26 11:51:29.384622] NAICS: 4512, Page: 1, Links Extracted: 0
+[2024-11-26 11:51:29.392732] Completed NAICS: 4512. Total Links: 0
+[2024-11-26 11:51:37.537832] NAICS: 3211, Page: 1, Links Extracted: 62
+[2024-11-26 11:51:37.543981] Completed NAICS: 3211. Total Links: 62
+[2024-11-26 11:51:45.739300] NAICS: 5612, Page: 1, Links Extracted: 45
+[2024-11-26 11:51:45.745599] Completed NAICS: 5612. Total Links: 45
+[2024-11-26 11:51:53.890116] NAICS: 5191, Page: 1, Links Extracted: 0
+[2024-11-26 11:51:53.898766] Completed NAICS: 5191. Total Links: 0
+[2024-11-26 11:52:02.051201] NAICS: 6232, Page: 1, Links Extracted: 26
+[2024-11-26 11:52:02.057753] Completed NAICS: 6232. Total Links: 26
+[2024-11-26 11:52:10.250159] NAICS: 3352, Page: 1, Links Extracted: 39
+[2024-11-26 11:52:10.256455] Completed NAICS: 3352. Total Links: 39
+[2024-11-26 11:52:18.437832] NAICS: 4483, Page: 1, Links Extracted: 0
+[2024-11-26 11:52:18.446195] Completed NAICS: 4483. Total Links: 0
+[2024-11-26 11:52:26.600458] NAICS: 4533, Page: 1, Links Extracted: 0
+[2024-11-26 11:52:26.608563] Completed NAICS: 4533. Total Links: 0
+[2024-11-26 11:52:34.779377] NAICS: 2111, Page: 1, Links Extracted: 79
+[2024-11-26 11:52:34.785248] Completed NAICS: 2111. Total Links: 79
+[2024-11-26 11:52:42.980726] NAICS: 4422, Page: 1, Links Extracted: 0
+[2024-11-26 11:52:42.988988] Completed NAICS: 4422. Total Links: 0
+[2024-11-26 11:52:51.181976] NAICS: 4421, Page: 1, Links Extracted: 0
+[2024-11-26 11:52:51.190168] Completed NAICS: 4421. Total Links: 0
+[2024-11-26 11:53:04.385866] NAICS: 7213, Page: 1, Links Extracted: 95
+[2024-11-26 11:53:04.391183] Completed NAICS: 7213. Total Links: 95
+[2024-11-26 11:53:12.581356] NAICS: 4511, Page: 1, Links Extracted: 0
+[2024-11-26 11:53:12.586544] Completed NAICS: 4511. Total Links: 0
+[2024-11-26 11:53:20.779105] NAICS: 3351, Page: 1, Links Extracted: 33
+[2024-11-26 11:53:20.785713] Completed NAICS: 3351. Total Links: 33
+[2024-11-26 11:53:28.992499] NAICS: 1125, Page: 1, Links Extracted: 42
+[2024-11-26 11:53:28.998157] Completed NAICS: 1125. Total Links: 42
+[2024-11-26 11:53:37.208988] NAICS: 1125, Page: 1, Links Extracted: 42
+[2024-11-26 11:53:37.215440] Completed NAICS: 1125. Total Links: 42
+[2024-11-26 11:53:45.367640] NAICS: 3131, Page: 1, Links Extracted: 40
+[2024-11-26 11:53:45.372842] Completed NAICS: 3131. Total Links: 40
+[2024-11-26 11:53:53.551767] NAICS: 2121, Page: 1, Links Extracted: 1
+[2024-11-26 11:53:53.560294] Completed NAICS: 2121. Total Links: 1
+[2024-11-26 11:54:01.700665] NAICS: 4821, Page: 1, Links Extracted: 48
+[2024-11-26 11:54:01.706980] Completed NAICS: 4821. Total Links: 48
+[2024-11-26 11:54:09.897020] NAICS: 5112, Page: 1, Links Extracted: 0
+[2024-11-26 11:54:09.905326] Completed NAICS: 5112. Total Links: 0
+[2024-11-26 11:54:18.108566] NAICS: 5173, Page: 1, Links Extracted: 0
+[2024-11-26 11:54:18.116027] Completed NAICS: 5173. Total Links: 0
+[2024-11-26 11:54:26.260868] NAICS: 4543, Page: 1, Links Extracted: 0
+[2024-11-26 11:54:26.269335] Completed NAICS: 4543. Total Links: 0
+[2024-11-26 11:54:34.463776] NAICS: 8141, Page: 1, Links Extracted: 0
+[2024-11-26 11:54:34.472034] Completed NAICS: 8141. Total Links: 0
+[2024-11-26 11:54:47.676488] NAICS: 4862, Page: 1, Links Extracted: 0
+[2024-11-26 11:54:47.684792] Completed NAICS: 4862. Total Links: 0
+[2024-11-26 11:54:55.832742] NAICS: 5151, Page: 1, Links Extracted: 0
+[2024-11-26 11:54:55.841097] Completed NAICS: 5151. Total Links: 0
+[2024-11-26 11:55:03.988792] NAICS: 4539, Page: 1, Links Extracted: 0
+[2024-11-26 11:55:03.997089] Completed NAICS: 4539. Total Links: 0
+[2024-11-26 11:55:12.201944] NAICS: 3255, Page: 1, Links Extracted: 44
+[2024-11-26 11:55:12.208649] Completed NAICS: 3255. Total Links: 44
+[2024-11-26 11:55:20.405627] NAICS: 3117, Page: 1, Links Extracted: 20
+[2024-11-26 11:55:20.412466] Completed NAICS: 3117. Total Links: 20
+[2024-11-26 11:55:28.590526] NAICS: 5211, Page: 1, Links Extracted: 0
+[2024-11-26 11:55:28.598619] Completed NAICS: 5211. Total Links: 0
+[2024-11-26 11:55:36.797432] NAICS: 5179, Page: 1, Links Extracted: 0
+[2024-11-26 11:55:36.805760] Completed NAICS: 5179. Total Links: 0
+[2024-11-26 11:55:44.957942] NAICS: 4431, Page: 1, Links Extracted: 0
+[2024-11-26 11:55:44.966293] Completed NAICS: 4431. Total Links: 0
+[2024-11-26 11:55:53.112775] NAICS: 4542, Page: 1, Links Extracted: 0
+[2024-11-26 11:55:53.121609] Completed NAICS: 4542. Total Links: 0
+[2024-11-26 11:56:01.317026] NAICS: 4532, Page: 1, Links Extracted: 0
+[2024-11-26 11:56:01.325107] Completed NAICS: 4532. Total Links: 0
+[2024-11-26 11:56:09.511995] NAICS: 3274, Page: 1, Links Extracted: 10
+[2024-11-26 11:56:09.518804] Completed NAICS: 3274. Total Links: 10
+[2024-11-26 11:56:17.631804] NAICS: 4481, Page: 1, Links Extracted: 0
+[2024-11-26 11:56:17.640170] Completed NAICS: 4481. Total Links: 0
+[2024-11-26 11:56:30.841914] NAICS: 4471, Page: 1, Links Extracted: 0
+[2024-11-26 11:56:30.850294] Completed NAICS: 4471. Total Links: 0
+[2024-11-26 11:56:39.006710] NAICS: 4482, Page: 1, Links Extracted: 0
+[2024-11-26 11:56:39.015431] Completed NAICS: 4482. Total Links: 0
+[2024-11-26 11:56:47.204143] NAICS: 4461, Page: 1, Links Extracted: 0
+[2024-11-26 11:56:47.212080] Completed NAICS: 4461. Total Links: 0
+[2024-11-26 11:56:55.362041] NAICS: 4523, Page: 1, Links Extracted: 0
+[2024-11-26 11:56:55.370412] Completed NAICS: 4523. Total Links: 0
+[2024-11-26 11:57:03.559298] NAICS: 5111, Page: 1, Links Extracted: 0
+[2024-11-26 11:57:03.567906] Completed NAICS: 5111. Total Links: 0
+[2024-11-26 11:57:11.755685] NAICS: 4522, Page: 1, Links Extracted: 0
+[2024-11-26 11:57:11.760613] Completed NAICS: 4522. Total Links: 0
+[2024-11-26 11:57:19.907898] NAICS: 5152, Page: 1, Links Extracted: 0
+[2024-11-26 11:57:19.916861] Completed NAICS: 5152. Total Links: 0
+[2024-11-26 11:57:28.066567] NAICS: 4531, Page: 1, Links Extracted: 0
+[2024-11-26 11:57:28.075817] Completed NAICS: 4531. Total Links: 0
+[2024-11-26 11:57:36.255286] NAICS: 6241, Page: 1, Links Extracted: 100
+[2024-11-26 11:57:39.101538] NAICS: 6241, Page: 2, Links Extracted: 100
+[2024-11-26 11:57:43.261564] NAICS: 6241, Page: 3, Links Extracted: 100
+[2024-11-26 11:57:46.673815] NAICS: 6241, Page: 4, Links Extracted: 100
+[2024-11-26 11:57:50.359014] NAICS: 6241, Page: 5, Links Extracted: 100
+[2024-11-26 11:57:53.556012] NAICS: 6241, Page: 6, Links Extracted: 100
+[2024-11-26 11:57:56.497642] NAICS: 6241, Page: 7, Links Extracted: 100
+[2024-11-26 11:57:59.104723] NAICS: 6241, Page: 8, Links Extracted: 100
+[2024-11-26 11:58:02.865301] NAICS: 6241, Page: 9, Links Extracted: 100
+[2024-11-26 11:58:06.338973] NAICS: 6241, Page: 10, Links Extracted: 100
+[2024-11-26 11:58:09.290798] NAICS: 6241, Page: 11, Links Extracted: 100
+[2024-11-26 11:58:12.292024] NAICS: 6241, Page: 12, Links Extracted: 100
+[2024-11-26 11:58:14.979903] NAICS: 6241, Page: 13, Links Extracted: 100
+[2024-11-26 11:58:18.164783] NAICS: 6241, Page: 14, Links Extracted: 100
+[2024-11-26 11:58:20.878947] NAICS: 6241, Page: 15, Links Extracted: 100
+[2024-11-26 11:58:26.229573] NAICS: 6241, Page: 16, Links Extracted: 100
+[2024-11-26 11:58:29.543713] NAICS: 6241, Page: 17, Links Extracted: 100
+[2024-11-26 11:58:32.529356] NAICS: 6241, Page: 18, Links Extracted: 100
+[2024-11-26 11:58:35.423691] NAICS: 6241, Page: 19, Links Extracted: 100
+[2024-11-26 11:58:38.297277] NAICS: 6241, Page: 20, Links Extracted: 100
+[2024-11-26 11:58:40.886288] NAICS: 6241, Page: 21, Links Extracted: 100
+[2024-11-26 11:58:43.463191] NAICS: 6241, Page: 22, Links Extracted: 100
+[2024-11-26 11:58:48.877939] NAICS: 6241, Page: 23, Links Extracted: 100
+[2024-11-26 11:58:52.631536] NAICS: 6241, Page: 24, Links Extracted: 100
+[2024-11-26 11:58:55.276537] NAICS: 6241, Page: 25, Links Extracted: 100
+[2024-11-26 11:58:58.659911] NAICS: 6241, Page: 26, Links Extracted: 100
+[2024-11-26 11:59:02.545922] NAICS: 6241, Page: 27, Links Extracted: 100
+[2024-11-26 11:59:05.299984] NAICS: 6241, Page: 28, Links Extracted: 100
+[2024-11-26 11:59:08.388137] NAICS: 6241, Page: 29, Links Extracted: 100
+[2024-11-26 11:59:11.574335] NAICS: 6241, Page: 30, Links Extracted: 100
+[2024-11-26 11:59:14.735033] NAICS: 6241, Page: 31, Links Extracted: 100
+[2024-11-26 11:59:17.600881] NAICS: 6241, Page: 32, Links Extracted: 100
+[2024-11-26 11:59:20.874712] NAICS: 6241, Page: 33, Links Extracted: 100
+[2024-11-26 11:59:23.756596] NAICS: 6241, Page: 34, Links Extracted: 100
+[2024-11-26 11:59:26.485103] NAICS: 6241, Page: 35, Links Extracted: 100
+[2024-11-26 11:59:29.604229] NAICS: 6241, Page: 36, Links Extracted: 100
+[2024-11-26 11:59:33.164887] NAICS: 6241, Page: 37, Links Extracted: 100
+[2024-11-26 11:59:36.537471] NAICS: 6241, Page: 38, Links Extracted: 100
+[2024-11-26 11:59:41.027260] NAICS: 6241, Page: 39, Links Extracted: 100
+[2024-11-26 11:59:44.252304] NAICS: 6241, Page: 40, Links Extracted: 100
+[2024-11-26 11:59:48.628591] NAICS: 6241, Page: 41, Links Extracted: 100
+[2024-11-26 11:59:51.811260] NAICS: 6241, Page: 42, Links Extracted: 100
+[2024-11-26 11:59:54.519013] NAICS: 6241, Page: 43, Links Extracted: 100
+[2024-11-26 11:59:57.869081] NAICS: 6241, Page: 44, Links Extracted: 100
+[2024-11-26 12:00:00.745361] NAICS: 6241, Page: 45, Links Extracted: 100
+[2024-11-26 12:00:04.400713] NAICS: 6241, Page: 46, Links Extracted: 100
+[2024-11-26 12:00:08.388822] NAICS: 6241, Page: 47, Links Extracted: 100
+[2024-11-26 12:00:11.176713] NAICS: 6241, Page: 48, Links Extracted: 100
+[2024-11-26 12:00:13.855556] NAICS: 6241, Page: 49, Links Extracted: 100
+[2024-11-26 12:00:17.279326] NAICS: 6241, Page: 50, Links Extracted: 100
+[2024-11-26 12:00:20.280807] NAICS: 6241, Page: 51, Links Extracted: 100
+[2024-11-26 12:00:23.368737] NAICS: 6241, Page: 52, Links Extracted: 100
+[2024-11-26 12:00:26.314164] NAICS: 6241, Page: 53, Links Extracted: 100
+[2024-11-26 12:00:29.389231] NAICS: 6241, Page: 54, Links Extracted: 100
+[2024-11-26 12:00:32.507122] NAICS: 6241, Page: 55, Links Extracted: 100
+[2024-11-26 12:00:35.593524] NAICS: 6241, Page: 56, Links Extracted: 100
+[2024-11-26 12:00:38.377001] NAICS: 6241, Page: 57, Links Extracted: 100
+[2024-11-26 12:00:41.011188] NAICS: 6241, Page: 58, Links Extracted: 100
+[2024-11-26 12:00:43.824617] NAICS: 6241, Page: 59, Links Extracted: 100
+[2024-11-26 12:00:46.682178] NAICS: 6241, Page: 60, Links Extracted: 100
+[2024-11-26 12:00:52.067938] NAICS: 6241, Page: 61, Links Extracted: 100
+[2024-11-26 12:00:55.118945] NAICS: 6241, Page: 62, Links Extracted: 100
+[2024-11-26 12:00:57.852402] NAICS: 6241, Page: 63, Links Extracted: 100
+[2024-11-26 12:01:01.182722] NAICS: 6241, Page: 64, Links Extracted: 100
+[2024-11-26 12:01:05.184246] NAICS: 6241, Page: 65, Links Extracted: 100
+[2024-11-26 12:01:08.398404] NAICS: 6241, Page: 66, Links Extracted: 100
+[2024-11-26 12:01:11.492587] NAICS: 6241, Page: 67, Links Extracted: 100
+[2024-11-26 12:01:14.434174] NAICS: 6241, Page: 68, Links Extracted: 100
+[2024-11-26 12:01:17.407700] NAICS: 6241, Page: 69, Links Extracted: 100
+[2024-11-26 12:01:20.258033] NAICS: 6241, Page: 70, Links Extracted: 100
+[2024-11-26 12:01:24.674431] NAICS: 6241, Page: 71, Links Extracted: 100
+[2024-11-26 12:01:28.087224] NAICS: 6241, Page: 72, Links Extracted: 100
+[2024-11-26 12:01:31.430699] NAICS: 6241, Page: 73, Links Extracted: 100
+[2024-11-26 12:01:35.638309] NAICS: 6241, Page: 74, Links Extracted: 100
+[2024-11-26 12:01:40.479053] NAICS: 6241, Page: 75, Links Extracted: 100
+[2024-11-26 12:01:44.028203] NAICS: 6241, Page: 76, Links Extracted: 100
+[2024-11-26 12:01:47.265041] NAICS: 6241, Page: 77, Links Extracted: 100
+[2024-11-26 12:01:50.296386] NAICS: 6241, Page: 78, Links Extracted: 100
+[2024-11-26 12:01:54.556366] NAICS: 6241, Page: 79, Links Extracted: 100
+[2024-11-26 12:01:58.786680] NAICS: 6241, Page: 80, Links Extracted: 100
+[2024-11-26 12:02:03.075572] NAICS: 6241, Page: 81, Links Extracted: 90
+[2024-11-26 12:02:03.079707] Completed NAICS: 6241. Total Links: 8090
+[2024-11-26 12:10:06.211420] NAICS: 8132, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:06.212201] Completed NAICS: 8132. Total Links: 100
+[2024-11-26 12:10:14.472263] NAICS: 5615, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:14.472778] Completed NAICS: 5615. Total Links: 100
+[2024-11-26 12:10:22.744837] NAICS: 8139, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:22.745226] Completed NAICS: 8139. Total Links: 100
+[2024-11-26 12:10:30.966353] NAICS: 6244, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:30.966788] Completed NAICS: 6244. Total Links: 100
+[2024-11-26 12:10:39.185064] NAICS: 6221, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:39.185600] Completed NAICS: 6221. Total Links: 100
+[2024-11-26 12:10:47.387681] NAICS: 4235, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:47.388116] Completed NAICS: 4235. Total Links: 100
+[2024-11-26 12:10:55.551638] NAICS: 4451, Page: 1, Links Extracted: 100
+[2024-11-26 12:10:55.552119] Completed NAICS: 4451. Total Links: 100
+[2024-11-26 12:11:03.753694] NAICS: 4233, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:03.754130] Completed NAICS: 4233. Total Links: 100
+[2024-11-26 12:11:11.946871] NAICS: 5629, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:11.947419] Completed NAICS: 5629. Total Links: 100
+[2024-11-26 12:11:20.148557] NAICS: 4911, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:20.148973] Completed NAICS: 4911. Total Links: 100
+[2024-11-26 12:11:33.375250] NAICS: 7111, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:33.375718] Completed NAICS: 7111. Total Links: 100
+[2024-11-26 12:11:41.541758] NAICS: 7131, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:41.542182] Completed NAICS: 7131. Total Links: 100
+[2024-11-26 12:11:49.783677] NAICS: 4441, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:49.784160] Completed NAICS: 4441. Total Links: 100
+[2024-11-26 12:11:57.982213] NAICS: 9211, Page: 1, Links Extracted: 100
+[2024-11-26 12:11:57.982670] Completed NAICS: 9211. Total Links: 100
+[2024-11-26 12:12:06.206002] NAICS: 8133, Page: 1, Links Extracted: 100
+[2024-11-26 12:12:06.206493] Completed NAICS: 8133. Total Links: 100
+[2024-11-26 12:12:14.408450] NAICS: 6241, Page: 1, Links Extracted: 100
+[2024-11-26 12:12:14.408831] Completed NAICS: 6241. Total Links: 100
+[2024-11-26 12:12:22.612073] NAICS: 7223, Page: 1, Links Extracted: 100
+[2024-11-26 12:12:22.612477] Completed NAICS: 7223. Total Links: 100
+[2024-11-26 12:12:30.816391] NAICS: 2213, Page: 1, Links Extracted: 100
+[2024-11-26 12:12:30.816903] Completed NAICS: 2213. Total Links: 100
+[2024-11-26 12:12:39.035858] NAICS: 3371, Page: 1, Links Extracted: 100
+[2024-11-26 12:12:39.036344] Completed NAICS: 3371. Total Links: 100
+[2024-11-26 12:12:47.236550] NAICS: 9241, Page: 1, Links Extracted: 100
+[2024-11-26 12:12:47.237196] Completed NAICS: 9241. Total Links: 100
+[2024-11-26 12:13:00.425535] NAICS: 2123, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:00.426027] Completed NAICS: 2123. Total Links: 100
+[2024-11-26 12:13:08.593331] NAICS: 4412, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:08.593768] Completed NAICS: 4412. Total Links: 100
+[2024-11-26 12:13:16.830600] NAICS: 1121, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:16.830928] Completed NAICS: 1121. Total Links: 100
+[2024-11-26 12:13:25.033703] NAICS: 6216, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:25.034138] Completed NAICS: 6216. Total Links: 100
+[2024-11-26 12:13:33.205041] NAICS: 3345, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:33.205643] Completed NAICS: 3345. Total Links: 100
+[2024-11-26 12:13:41.404215] NAICS: 4872, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:41.404732] Completed NAICS: 4872. Total Links: 100
+[2024-11-26 12:13:49.611189] NAICS: 9231, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:49.611608] Completed NAICS: 9231. Total Links: 100
+[2024-11-26 12:13:57.776755] NAICS: 3345, Page: 1, Links Extracted: 100
+[2024-11-26 12:13:57.777068] Completed NAICS: 3345. Total Links: 100
+[2024-11-26 12:14:05.949926] NAICS: 9231, Page: 1, Links Extracted: 100
+[2024-11-26 12:14:05.950433] Completed NAICS: 9231. Total Links: 100
+[2024-11-26 12:14:14.147643] NAICS: 3353, Page: 1, Links Extracted: 100
+[2024-11-26 12:14:14.148049] Completed NAICS: 3353. Total Links: 100
+[2024-11-26 12:14:27.338160] NAICS: 3149, Page: 1, Links Extracted: 100
+[2024-11-26 12:14:27.338579] Completed NAICS: 3149. Total Links: 100
+[2024-11-26 12:14:35.534871] NAICS: 3399, Page: 1, Links Extracted: 100
+[2024-11-26 12:14:35.535270] Completed NAICS: 3399. Total Links: 100
+[2024-11-26 12:14:43.777958] NAICS: 3279, Page: 1, Links Extracted: 100
+[2024-11-26 12:14:43.778365] Completed NAICS: 3279. Total Links: 100
+[2024-11-26 12:14:51.978058] NAICS: 4859, Page: 1, Links Extracted: 100
+[2024-11-26 12:14:51.978475] Completed NAICS: 4859. Total Links: 100
+[2024-11-26 12:15:00.188794] NAICS: 3259, Page: 1, Links Extracted: 100
+[2024-11-26 12:15:00.189213] Completed NAICS: 3259. Total Links: 100
+[2024-11-26 12:15:08.364844] NAICS: 6213, Page: 1, Links Extracted: 100
+[2024-11-26 12:15:08.366215] Completed NAICS: 6213. Total Links: 100
+[2024-11-26 12:15:16.573378] NAICS: 4853, Page: 1, Links Extracted: 100
+[2024-11-26 12:15:16.573775] Completed NAICS: 4853. Total Links: 100
+[2024-11-26 12:15:24.740100] NAICS: 3332, Page: 1, Links Extracted: 100
+[2024-11-26 12:15:24.740573] Completed NAICS: 3332. Total Links: 100
+[2024-11-26 12:15:32.966459] NAICS: 9221, Page: 1, Links Extracted: 100
+[2024-11-26 12:15:32.966922] Completed NAICS: 9221. Total Links: 100
+[2024-11-26 12:15:41.169590] NAICS: 4413, Page: 1, Links Extracted: 100
+[2024-11-26 12:15:41.170133] Completed NAICS: 4413. Total Links: 100
